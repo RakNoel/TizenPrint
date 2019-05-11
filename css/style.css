@@ -93,3 +93,9 @@ td a {
     justify-content: space-around;
     flex-flow: row;
 }
+.stream {
+	width: 360px;
+	height: 360px;
+	float: left;
+	margin: 0px;
+}

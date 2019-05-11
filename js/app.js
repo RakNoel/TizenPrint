@@ -23,11 +23,19 @@
 
 var api_token = "";
 var printServer = "";
+var printerPort = "";
+var streamPort = "";
 
 $.getJSON("documents/secrets.json", function(x) {
 	console.log(x.apiToken);
 	console.log(x.server);
+	console.log(x.work-port);
+	console.log(x.stream-port);
 	
 	api_token = x.apiToken;
 	printServer = x.server;
+	printerPort = x.work-port;
+	streamPort = x.stream-port;
+	
+	("#streamImage").attr("src", "http://" + printServer + ":" + streamPort + "/webcam/?action=stream");
 });
