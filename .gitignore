@@ -5,7 +5,7 @@
 #.project
 .settings/
 .sign/
-.tproject
+#.tproject
 
 #Secrets file
 #documents/secrets.json
