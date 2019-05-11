@@ -31,4 +31,3 @@ $.getJSON("documents/secrets.json", function(x) {
 	api_token = x.apiToken;
 	printServer = x.server;
 });
-
