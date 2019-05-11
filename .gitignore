@@ -1,0 +1,11 @@
+#Tizen package file
+*.wgt
+
+#Tizen hidden files
+.project
+.settings/
+.sign/
+.tproject
+
+#Secrets file
+#documents/secrets.json

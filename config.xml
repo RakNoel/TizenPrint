@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://yourdomain/TizenPrint" version="1.0.0" viewmodes="maximized">
+    <tizen:application id="lLzJmU51Cb.TizenPrint" package="lLzJmU51Cb" required_version="2.3.2"/>
+    <author href="https://www.raknoel.no" email="oskar.leir@gmail.com">Oskar Leirvåg</author>
+    <content src="index.html"/>
+    <feature name="http://tizen.org/feature/screen.size.normal"/>
+    <icon src="icon.png"/>
+    <name>TizenPrint</name>
+    <tizen:profile name="wearable"/>
+    <tizen:setting hwkey-event="enable"/>
+</widget>
