@@ -2,7 +2,7 @@
 *.wgt
 
 #Tizen hidden files
-.project
+#.project
 .settings/
 .sign/
 .tproject
