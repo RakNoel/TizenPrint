@@ -5,5 +5,13 @@ This project is a Tizen wearable applicaton to controll a 3d printer using octop
 To build and compile use Tizen web build-tools
 
 ## Important info
-Due to the connection being hard-coded it's needed to change the secrets.js file. But remember to unfollow this file in git using
-```git update-index --assume-unchanged documents/secrets.js```
+Due to the connection being hard-coded it's needed to add a file: "js/secrets.js"
+```
+function loadSecrets() {
+    return {
+   		api_token : "MY3X4M9L3T0K3N",
+   		printServer : "print.example.com",
+   		printerPort : "8081"
+    }
+}
+```

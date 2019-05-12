@@ -9,3 +9,10 @@
 
 #Secrets file
 #documents/secrets.json
+js/secrets.js
+
+#Vim
+*~
+
+#Webstorm
+.idea/
