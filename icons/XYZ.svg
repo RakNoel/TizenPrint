@@ -1,1 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.41 42.58"><defs><style>.cls-1{fill:#fff;stroke:#32fcb3;stroke-miterlimit:10;}.cls-2{font-size:5.97px;}.cls-2,.cls-3,.cls-4{font-family:MyriadPro-Regular, Myriad Pro;}.cls-3{font-size:6.07px;}.cls-4{font-size:6.22px;}</style></defs><title>Asset 1</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><line class="cls-1" x1="5.33" y1="1.62" x2="5.33" y2="34.62"/><line class="cls-1" x1="5.46" y1="34.14" x2="18.33" y2="20.12"/><line class="cls-1" x1="5.33" y1="34.4" x2="32.33" y2="41.12"/><circle class="cls-1" cx="5.33" cy="34.12" r="1"/><polygon class="cls-1" points="4.33 3.12 6.33 3.12 5.33 1.12 4.33 3.12 4.33 3.12"/><polygon class="cls-1" points="16.92 20.22 18.44 21.53 18.99 19.36 16.92 20.22 16.92 20.22"/><polygon class="cls-1" points="32.56 39.94 32.15 41.89 34.31 41.32 32.56 39.94 32.56 39.94"/><text class="cls-2" transform="translate(0 19.13) scale(1.16 1)">Z</text><text class="cls-3" transform="translate(17.83 27.1) scale(1.22 1)">Y</text><text class="cls-4" transform="translate(27.72 39.06) scale(1.16 1)">X</text></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.41 42.58">
+    <defs>
+        <style>
+            .cls-1{fill:#32fcb3;stroke:#32fcb3;stroke-miterlimit:10;}.cls-2{fill:#32fcb3;font-size:5.97px;}.cls-2,.cls-3,.cls-4{font-family:MyriadPro-Regular,
+            Myriad Pro;}.cls-3{fill:#32fcb3;font-size:6.07px;}.cls-4{fill:#32fcb3;font-size:6.22px;}
+        </style>
+    </defs>
+    <title>Asset 1</title>
+    <g id="Layer_2">
+        <g id="Layer_1-2">
+            <line class="cls-1" x1="5.33" y1="1.62" x2="5.33" y2="34.62"/>
+            <line class="cls-1" x1="5.46" y1="34.14" x2="18.33" y2="20.12"/>
+            <line class="cls-1" x1="5.33" y1="34.4" x2="32.33" y2="41.12"/>
+            <circle class="cls-1" cx="5.33" cy="34.12" r="1"/>
+            <polygon class="cls-1" points="4.33 3.12 6.33 3.12 5.33 1.12 4.33 3.12 4.33 3.12"/>
+            <polygon class="cls-1" points="16.92 20.22 18.44 21.53 18.99 19.36 16.92 20.22 16.92 20.22"/>
+            <polygon class="cls-1" points="32.56 39.94 32.15 41.89 34.31 41.32 32.56 39.94 32.56 39.94"/>
+            <text class="cls-2" transform="translate(0 19.13) scale(1.16 1)">Z</text>
+            <text class="cls-3" transform="translate(17.83 27.1) scale(1.22 1)">Y</text>
+            <text class="cls-4" transform="translate(27.72 39.06) scale(1.16 1)">X</text>
+        </g>
+    </g>
+</svg>
