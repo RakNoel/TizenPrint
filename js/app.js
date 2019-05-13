@@ -23,12 +23,19 @@ async function automaticConnection() {
 }
 
 function fillMenu() {
-    getStatus("api/printer").then(result => {
-        $("#hotend").text(result.temperature.tool0.actual + " / " + result.temperature.tool0.target);
-        $("#heatbed").text(result.temperature.bed.actual + " / " + result.temperature.bed.target);
-        $("#printerStatus").text("State: " + result.state.text);
-        //console.log(result);
-    });
+    try {
+        getStatus("api/printer").then(result => {
+            $("#hotend").text(result.temperature.tool0.actual + " / " + result.temperature.tool0.target);
+            $("#heatbed").text(result.temperature.bed.actual + " / " + result.temperature.bed.target);
+            $("#printerStatus").text("State: " + result.state.text);
+            //console.log(result);
+        }, () => {
+            $("#printerStatus").text("State: Not operational");
+            console.log("non operational");
+        });
+    } catch {
+        //Ignore
+    }
 }
 
 async function postPrinter(requestUrl, data) {
@@ -58,8 +65,8 @@ async function getStatus(requestUrl) {
         success: result => {
             return result;
         },
-        error: function () {
-            console.log("AJAX failed");
+        error: error => {
+            return error;
         },
         beforeSend: setHeaders
     });
