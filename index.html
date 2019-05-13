@@ -1,54 +1,72 @@
 <!DOCTYPE html>
 <html lang="EN">
 <head>
-	<meta name="viewport" content="width=device-width,user-scalable=no">
-	<title>TizenPrint</title>
-	<link rel="stylesheet" href="lib/tau/wearable/theme/default/tau.min.css">
-	<link rel="stylesheet" media="all and (-tizen-geometric-shape: circle)" href="lib/tau/wearable/theme/default/tau.circle.min.css">
-	<link rel="stylesheet" href="css/style.css">
-	<script src="js/jquery-3.4.1.min.js"></script>
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <title>TizenPrint</title>
+    <link rel="stylesheet" href="lib/tau/wearable/theme/default/tau.min.css">
+    <link rel="stylesheet" media="all and (-tizen-geometric-shape: circle)"
+          href="lib/tau/wearable/theme/default/tau.circle.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-	<div class="ui-page ui-page-active" id="mainMenu">
-	<div class="contents">
-		<div class="footer" id="mainMenuFooter">
-		<ul class="footer--menu">
-            <li class="bubble">
-                <a href="#print"><img style="width:32px;" src="icons/print-solid.svg" alt="Print icon"></a>
-            </li>
-            <li class="bubble">
-                <a href="#axis"><img style="width:32px;" src="icons/ruler-combined-solid.svg" alt="Axis icon"></a>
-            </li>
-            <li class="bubble">
-                <a href="#stream"><img style="width:32px;" src="icons/video-solid.svg" alt="Stream icon"></a>
-            </li>
-        </ul>
-        </div>
-	</div>
-	</div>
-	
-	<div class="ui-page" id="stream">
-	<div class="contents">
-		<div style='margin:auto;'>
-				<img class="stream" id="streamImage" src="" alt="Actual Stream">
-		</div>
-		<div class="footer" id="footer">
-		<ul id=menu class="footer--menu">
-            <li class="bubble">
-                <a href="#mainMenu"><img style="width:32px;" src="icons/undo-solid.svg" alt="return to menu"></a>
-            </li>
-        </ul>
-        </div>
-	</div>
-	</div>
+<div class="ui-page ui-page-active" id="mainMenu">
+    <div class="contents">
+        <div style='margin:auto;' id="mainMenuContent">
+            <h1 id="printerStatus" class="header">State: Not connected</h1>
+            <table>
+                <tbody>
+                <tr>
+                    <td class="attrib">Hotend:</td>
+                    <td class="value" id="hotend"> 0 / 0</td>
+                </tr>
+                <tr>
+                    <td class="attrib">Heatbed:</td>
+                    <td class="value" id="heatbed">0 / 0</td>
+                </tr>
+                </tbody>
+            </table>
 
-	
-	
-	<script src="lib/tau/wearable/js/tau.min.js"></script>
-	<script type="text/javascript" src="js/interfaceListener.js"></script>
-	<script src="js/app.js"></script>
-	<script type="text/javascript" src="js/secrets.js"></script>
-	<script src="js/lowBatteryCheck.js"></script>
-	<script src="js/circle-helper.js"></script>
+        </div>
+        <div class="footer" id="mainMenuFooter">
+            <ul class="footer--menu">
+                <li class="bubble">
+                    <a href="#print"><img style="width:32px;" src="icons/print-solid.svg" alt="Print icon"></a>
+                </li>
+                <li class="bubble">
+                    <a href="#axis"><img style="width:32px;" src="icons/ruler-combined-solid.svg" alt="Axis icon"></a>
+                </li>
+                <li class="bubble">
+                    <a href="#stream" onclick='loadStream()'><img style="width:32px;" src="icons/video-solid.svg"
+                                                                  alt="Stream icon"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="ui-page" id="stream">
+    <div class="contents">
+        <div style='margin:auto;'>
+            <img class="stream" id="streamImage" src="" alt="Actual Stream">
+        </div>
+        <div class="footer" id="footer">
+            <ul id=menu class="footer--menu">
+                <li class="bubble">
+                    <a href="#mainMenu" onclick='unloadStream()'><img style="width:32px;" src="icons/undo-solid.svg"
+                                                                      alt="return to menu"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<script src="lib/tau/wearable/js/tau.min.js"></script>
+<script type="text/javascript" src="js/interfaceListener.js"></script>
+<script src="js/app.js"></script>
+<script type="text/javascript" src="js/secrets.js"></script>
+<script src="js/lowBatteryCheck.js"></script>
+<script src="js/circle-helper.js"></script>
 </body>
 </html>
