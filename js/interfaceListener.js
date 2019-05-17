@@ -19,4 +19,19 @@
             }
         }
     });
+
+    (function(tau) {
+        if (tau.support.shape.circle) {
+            document.addEventListener('pagebeforeshow', function() {
+                window.addEventListener('rotarydetent', rotaryHandler);
+            });
+
+            document.addEventListener('pagebeforehide', function(e) {
+                if (list) {
+                    snapListviewWidget.destroy();
+                    window.removeEventListener('rotarydetent', rotaryHandler);
+                }
+            });
+        }
+    }(tau));
 }());

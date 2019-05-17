@@ -18,6 +18,14 @@ td {
 td a {
 	width: 100%;
 }
+
+#axisSpeed {
+    position: fixed;
+    left: 275px;
+    top: 160px;
+    color: #32fcb3;
+}
+
 .contents {
     display: flex;
     display: -webkit-flex;
