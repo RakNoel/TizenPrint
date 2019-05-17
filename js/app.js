@@ -102,8 +102,8 @@ async function automaticConnection() {
 function fillMenu() {
     getStatus("api/printer").then(result => {
         $("#printerStatus").text("State: " + result.state.text);
-        if (typeof result.temperature.tool0 !== 'undefined') $("#hotend").text(result.temperature.tool0.actual + " / " + result.temperature.tool0.target);
-        if (typeof result.temperature.bed !== 'undefined') $("#heatbed").text(result.temperature.bed.actual + " / " + result.temperature.bed.target);
+        if (typeof result.temperature.tool0 !== undefined) $("#hotend").text(result.temperature.tool0.actual + " / " + result.temperature.tool0.target);
+        if (typeof result.temperature.bed !== undefined) $("#heatbed").text(result.temperature.bed.actual + " / " + result.temperature.bed.target);
     }, () => {
         $("#printerStatus").text("State: Not operational");
         console.log("non operational");
@@ -158,8 +158,3 @@ async function loadStream() {
 async function unloadStream() {
     $("#streamImage").attr("src", "");
 }
-
-//Cus math is apparently hard
-Number.prototype.mod = function (n) {
-    return ((this % n) + n) % n;
-};
