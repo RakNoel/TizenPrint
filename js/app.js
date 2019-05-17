@@ -1,7 +1,7 @@
 //Global variables
 let activeWindow = "mainMenu";
 const possibleAxisSpeeds = [5, 10, 50];
-const possibleAxisName = ['x', 'y', 'z'];
+const possibleAxisName = ["x", "y", "z"];
 let axisControl = {
     currentAxis: 0,
     currentSpeed: 0,
@@ -10,7 +10,7 @@ let axisControl = {
 //Document load
 $(function () {
     //Events
-    document.addEventListener('hardwareRotate', controlAxis);
+    document.addEventListener("hardwareRotate", controlAxis);
     $("#axisSpeed").on("click", rotateAxisSpeed);
     $("#imgXYZContainer").on("click", rotateAxisName);
 
@@ -102,8 +102,12 @@ async function automaticConnection() {
 function fillMenu() {
     getStatus("api/printer").then(result => {
         $("#printerStatus").text("State: " + result.state.text);
-        if (typeof result.temperature.tool0 !== undefined) $("#hotend").text(result.temperature.tool0.actual + " / " + result.temperature.tool0.target);
-        if (typeof result.temperature.bed !== undefined) $("#heatbed").text(result.temperature.bed.actual + " / " + result.temperature.bed.target);
+        if (typeof result.temperature.tool0 !== undefined) {
+            $("#hotend").text(result.temperature.tool0.actual + " / " + result.temperature.tool0.target);
+        }
+        if (typeof result.temperature.bed !== undefined) {
+            $("#heatbed").text(result.temperature.bed.actual + " / " + result.temperature.bed.target);
+        }
     }, () => {
         $("#printerStatus").text("State: Not operational");
         console.log("non operational");
@@ -132,8 +136,8 @@ async function getStatus(requestUrl) {
     let secrets = loadSecrets();
     return $.ajax({
         url: "http://" + secrets.printServer + ":" + secrets.printerPort + "/" + requestUrl,
-        type: 'GET',
-        datatype: 'json',
+        type: "GET",
+        datatype: "json",
         success: result => {
             return result;
         },
@@ -147,7 +151,7 @@ async function getStatus(requestUrl) {
 
 function setHeaders(xhr) {
     let secrets = loadSecrets();
-    xhr.setRequestHeader('X-Api-Key', secrets.api_token);
+    xhr.setRequestHeader("X-Api-Key", secrets.api_token);
 }
 
 async function loadStream() {
