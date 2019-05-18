@@ -19,4 +19,12 @@
             }
         }
     });
+
+    (function(tau) {
+        if (tau.support.shape.circle) {
+            document.addEventListener("pagebeforeshow", () => {
+                window.addEventListener("rotarydetent", rotaryHandler);
+            });
+        }
+    }(tau));
 }());
