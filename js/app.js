@@ -11,10 +11,7 @@ let axisControl = {
 $(function () {
     //Events
     document.addEventListener("hardwareRotate", controlAxis);
-    document.addEventListener("pagechange", x => {
-        updateActiveWindow();
-        console.log("It happened");
-    });
+    document.addEventListener("pagechange", updateActiveWindow);
 
     $("#axisSpeed").on("click", rotateAxisSpeed);
     $("#imgXYZContainer").on("click", rotateAxisName);
@@ -84,7 +81,7 @@ function setAxisDisplay() {
 
 function rotaryHandler(event) {
     updateActiveWindow();
-    document.dispatchEvent(new CustomEvent('hardwareRotate', event));
+    document.dispatchEvent(new CustomEvent("hardwareRotate", event));
 }
 
 function updateActiveWindow() {
