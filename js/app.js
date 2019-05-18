@@ -46,6 +46,9 @@ function controlAxis(event) {
     if (activeWindow !== "axis") {
         return true;
     }
+    if (printerStatus !== "Operational") {
+        return true;
+    }
 
     console.log(event);
     let rotaryDirection = (event.detail.direction === undefined) ? event.detail.direction : "CW";
@@ -118,11 +121,10 @@ function fillMenu() {
     getStatus("api/printer").then(result => {
 
         if (printerStatus !== result.state.text) {
+            printerStatus = result.state.text;
             let e = {bubbles: false, cancelable: false, detail: null};
             document.dispatchEvent(new CustomEvent("printerStatusChange", e));
         }
-
-        printerStatus = result.state.text;
         $("#printerStatus").text("State: " + result.state.text);
         if (typeof result.temperature.tool0 !== undefined) {
             $("#hotend").text(result.temperature.tool0.actual + " / " + result.temperature.tool0.target);
