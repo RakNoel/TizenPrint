@@ -1,5 +1,6 @@
 //Global variables
 let activeWindow = "mainMenu";
+let printerStatus = "";
 const possibleAxisSpeeds = [5, 10, 50];
 const possibleAxisName = ["x", "y", "z"];
 let axisControl = {
@@ -12,6 +13,7 @@ $(function () {
     //Events
     document.addEventListener("hardwareRotate", controlAxis);
     document.addEventListener("pagechange", updateActiveWindow);
+    document.addEventListener("printerStatusChange", setPrintingMode);
 
     $("#axisSpeed").on("click", rotateAxisSpeed);
     $("#imgXYZContainer").on("click", rotateAxisName);
@@ -29,6 +31,16 @@ $(function () {
         }, 1000);
     });
 });
+
+function setPrintingMode() {
+    let visible = (printerStatus !== "Operational") ? "hidden" : "";
+    try {
+        $("#axisLink").css("visibility", visible);
+        $("#printLink").css("visibility", visible);
+    } catch (err) {
+        //Ignore
+    }
+}
 
 function controlAxis(event) {
     if (activeWindow !== "axis") {
@@ -80,7 +92,6 @@ function setAxisDisplay() {
 }
 
 function rotaryHandler(event) {
-    updateActiveWindow();
     document.dispatchEvent(new CustomEvent("hardwareRotate", event));
 }
 
@@ -91,7 +102,7 @@ function updateActiveWindow() {
 
 async function automaticConnection() {
     getStatus("api/connection").then(result => {
-        if (result.current.state !== "Operational") {
+        if (result.current.state === "Closed") {
             let data = {
                 command: "connect"
             };
@@ -99,11 +110,19 @@ async function automaticConnection() {
                 console.log("Connecting");
             });
         }
+        setPrintingMode();
     });
 }
 
 function fillMenu() {
     getStatus("api/printer").then(result => {
+
+        if (printerStatus !== result.state.text) {
+            let e = {bubbles: false, cancelable: false, detail: null};
+            document.dispatchEvent(new CustomEvent("printerStatusChange", e));
+        }
+
+        printerStatus = result.state.text;
         $("#printerStatus").text("State: " + result.state.text);
         if (typeof result.temperature.tool0 !== undefined) {
             $("#hotend").text(result.temperature.tool0.actual + " / " + result.temperature.tool0.target);
