@@ -11,6 +11,11 @@ let axisControl = {
 $(function () {
     //Events
     document.addEventListener("hardwareRotate", controlAxis);
+    document.addEventListener("pagechange", x => {
+        updateActiveWindow();
+        console.log("It happened");
+    });
+
     $("#axisSpeed").on("click", rotateAxisSpeed);
     $("#imgXYZContainer").on("click", rotateAxisName);
 
@@ -29,8 +34,9 @@ $(function () {
 });
 
 function controlAxis(event) {
-    if (activeWindow !== "axis")
+    if (activeWindow !== "axis") {
         return true;
+    }
 
     console.log(event);
     let rotaryDirection = (event.detail.direction === undefined) ? event.detail.direction : "CW";

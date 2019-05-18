@@ -25,8 +25,6 @@
             document.addEventListener("pagebeforeshow", () => {
                 window.addEventListener("rotarydetent", rotaryHandler);
             });
-
-            document.addEventListener("pageaftershow", updateActiveWindow);
         }
     }(tau));
 }());
