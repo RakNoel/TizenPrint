@@ -91,7 +91,7 @@
         \item STL/OBJ: The some of the most used digital file formats for the mesh method.
         \item GCODE: The name of the instructions given to the 3D-Printer and \; is comments.
         These codes refer to single operations eg. \textit{M104 S215 \; set extruder temp}.
-        GCODE might also refer to GCODE-file. \mycitation{reprap:gcode}
+        GCODE might also refer to GCODE-file.
         \item GCODE-file: A file containing up to several hundred-thousand lines of GCODE commands.
         Usually one file per print-job.
         \item Slice: The operation where a digital mesh is processed to GCODE instructions that will replicate said object.
@@ -99,6 +99,7 @@
         \item Slicer: A program/application that does the slicing operation.
         Usually holds default settings for your printer, and some are proprietary.
     \end{itemize}
+    \mycitation{reprap:gcode}
     \newpage
 
     % % % % % % % % % % % % % % % % %
@@ -170,7 +171,7 @@
     Luckily they have a REST-API available, and allows for further development.
     Already there are multiple applications made for the different mobile devices, but less is available for the wearable market.
 
-    \mysubsection{REST-API}
+    \mysubsection{Rest-API}
     The idea of having stateless APIs available to allow different applications is not a new idea.
     However due to newer web technologies like React and typescript it has slowly been creeping up the line as a market
     standard.
@@ -201,12 +202,13 @@
 
     \mysection{The infrastructure}
     \mysubsection{The setup}
-    The 3D-Printer only support GCODE commands using mostly the NIST RS274NGC Interpreter \mycitation{reprap:nist}.'
+    The 3D-Printer only support GCODE commands using mostly the NIST RS274NGC Interpreter.
     This requires GCODE to either be supplied trough a SD-card directly in the 3D-Printer or by a physical connection.
     This is where Octoprint is connected.
     Octoprint is running on a RaspberryPi 3B+ using the Raspbian-Lite OS, in a custom built casing on the printer.
     This creates a small computer with a physical connection, and since Octoprint is accessible trough the web-interface
     it acts like a wireless bridge.
+    \mycitation{reprap:nist}
     \\\\
     Octoprint is running it's own web-service and allows certain operations even if the printer is turned off.
     It also hosts an Application-protocol-interface which allows other applications to access and use octoprint as a
@@ -214,7 +216,7 @@
 
     \mysubsection{Planned architecture}
     \centerline{\includegraphics[scale=0.5]{figures/TizenPrint-architecture.png}}
-    \\\\
+
     With this setup the physical printer and webcam is isolated by physical connections from the rest of the
     world.
     Octoprint is running as a service on a Raspberry Pi 3B+ (marked red), with access to its filesystem for storage and other
@@ -250,7 +252,7 @@
     The Tizen-studio gives a standard "Hello World" program, which worked in the simulator, but would not deploy to the
     physical device due to certificate requirement, which was not supported int the used OS .
     Unfortunately the only other available development computer running Windows 10 did not have a processor which met
-    the requirements to run the emulator, nor was it placed in an environment which allowed the physical device to connect
+    the requirements to run the emulator (Hyper-V compatible), nor was it placed in an environment which allowed the physical device to connect
     to wifi, thus not being able to deploy.
     The solution for deploy became dual-booting into windows 10, and borrowing an external wifi-signal in another
     location, which alone accounted for major delays.
@@ -264,6 +266,8 @@
     efficiency of testing as that could be done on the computer web-browser.
     Lastly the styling of the application was much easier to change due to a CSS supporting reusable definitions called
     classed.
+    \\\\
+    It is now also possible to develop in .NET C\# using Xamarin in microsoft visual studio.
 
     \mysubsection{Getting to know the tools}
     As an experiment, a smaller easier application was developed\; MyPay.
@@ -297,7 +301,131 @@
     To aid with this, the background was set to a contrast color, and got a circular box over it to illustrate where
     the physical frame would be.
 
+    \newpage
 
+    \mysection{Design}
+    \mysubsection{Circular display}
+    Working with a circular display is a rather interesting concept.
+    Due to the bevels not following a straight line, while the screen effectively is outside the frame does mess with
+    the languages.
+    Tizen-studio does provide a small package called the Circular-helper.js which is meant to help with some of this.
+    Still it ia often easier to just use strict design and pixel measures.
+    Such design is usually not viable in web-design due to all the different devices that can access a site, but since
+    this is hosted locally this won't be an issue.
+    \\\\
+    Another aspect of the circular design is that it allows for some innovative figures and designs.
+    Even though this limits an already small screen, it allows the design to break certain standards, and move objects
+    closer to the center of the screen.
+    This forces the look to become less structured, and applies a more natural feel to almost any design,
+    while only displaying the most relevant information.
+    \mycitation{samsung:developer:galaxy-watch:DesignPrinciples}
+    \\\\
+    The circular bevels therefore promotes the use of rounded scrollbars, single displayed items, and even bent text along
+    the edges of the device.
+
+    \mysubsection{One page application}
+    The setup off Tizen webb applications does not support more than one page.
+    Unlike normal browser design where you link to different files on the server, tizen only loads the first page, and
+    refuses to handle anchors (links) as expected.
+    Instead tizen uses a provided javascript to display different pages.
+    This is essentially done by adding and removing a style-class, where only the container with the class "ui-page-active"
+    is displayed, together with a possible footer which is always displayed.
+    \\\\
+    One page application files tend to get rather large, and can slow down development.
+    Sometimes trickery can be used to load other files by Iframes and so on, but often does not have the intended effect.
+    It therefore becomes essential to move all possible aspects outside of the HTML, like scripts and SVGs in their own
+    files.
+
+    \mysubsection{Attention span}
+    Wearable devices like watches are made to only be glanced at, usually while moving.
+    Most applications are therefore designed only to show the utter most relevant information to a user.
+    It's therefore important to have the app show the relevant information fast, with little interactions,
+    if not a user would just use the phone.
+    \\\\
+    This is highly relevant the development of this application, as one would rather use a smartphone to do certain
+    operations if the interface is tricky.
+    Even so\; if the user experience of the application succeeds in keeping the interaction low, it would be proffered
+    to use for smaller tasks, like starting a new job, preheating, or controlling axis.
+
+    \mysubsection{Small display}
+    The samsung galaxy watch has a display with high resolution, but in design it holds effectively 360 x 360 pixels,
+    which is really small, only about a fifth of a normal computer screen.
+    This limits the size of any text being displayed, and requires a lot of innovative design.
+    \\\\
+    One solution to this has been the usage of icons instead of text.
+    This allows a much more efficient design for menus or footers, leaving a lot more space for the main content on the
+    page.
+    \\\\
+    Another solution is to implement popper usage of the physical input from the device.
+    The physical devise does have 2 buttons, and a rotating bevel, though only one of the buttons allows
+    for change.
+    This adds easier to reach tactile buttons with a response to the user, but testing of these inputs does require an
+    emulator, which slows down development.
+    Also, the expected functionality of the physical inputs needs to be apprised for the user.
+
+    \mysubsection{The problem of icons}
+    Regrettably icons is not a fix-all solution to this problem, and does come at its own cost.
+    Even though most feel like icons does help with explaining the expected behaviour or meaning, they should only be used
+    to assist the explanation with a text.
+    This is due to the many icons being used not necessarily being standardised, or the illustrated object unknown to a
+    potential user.
+    \\\\
+    A great example of icons not being recognised is the usage of the save-icon.
+    The icon usually represents an old floppy-disk, which newer generations might never have experienced.
+    This in turn makes the icon something we have to learn to recognise, and once learned it greatly increases the time
+    it takes to find it, or associate the functionality of an interface.
+    \\\\
+    An argument of statistics therefore goes against the practice of icons, as they might be misinterpreted.
+    If each icon holds a probability for misunderstanding, then each icon added will greatly increase the chance
+    for at least one icon being misunderstood for each user.
+
+    \mysubsection{Wearable devise}
+    As the intended device is a wearable watch, it is expected to be small in size.
+    This physical limitation does also limit the size of internal components greatly, and then heat-dissipation even more.
+    Such devices can therefore not hold powerful components, nor large batteries.
+    Many other devices (eg\. the apple watch), limits the thread requirements of their applications to prevent bad
+    development to impact the battery life of their device.
+    \\\\
+    Tizen OS does not set any such visible limits, and it's therefore recommended to limit background processes, and hard
+    operations.
+    In the development of this app this was discovered when the stream was added.
+    Due to the single-page design of the application the stream was updated continuously, as long as the app was open,
+    even if it was only showing temperatures.
+    This lead to major decrease in battery-levels after only a few minutes of testing.
+    \\\\
+    Streaming also required constant internet access, downloading a high quality photo.
+    Since the watch uses what internet it has available, it being a mobile device might eat up an entire month of
+    mobile-data within just a couple of hours.
+    \\\\
+    The solution to both aforementioned usage-problems was simply to load\/unload the stream, loading it only when it was
+    required.
+
+    \mysubsection{Accessibility}
+    \centerline{\includegraphics[scale=0.5]{figures/hoved_engelsk_farge_positiv.jpg}}
+    \mysubsubsection{Legal requirements}
+    Another major issue unveiled during development is the lack of integrated accessibility features.
+    In Norway we are strongly regulated by the EU and Norwegian laws, requiring developers to implement accessibility
+    features.
+    This includes (but is not limited to) things like, blind users, deaf users, or users otherwise unable to use the
+    provided interface like amputees.
+    \\\\
+    This project will not focus to much on accessibility, as it is not meant to be published nor profitable.
+    Nevertheless it is important to mention the severity of the inadequacy for accessibility features in the Tizen OS,
+    and some of what would have to be done in the case of publishing and profiting.
+
+    \mysubsubsection{DIFI standards}
+    DIFI translated is (Agency for Public Management and eGovernment).
+    As an organization they handle many parts for human prosperity, and includes many different topics.
+    \mycitation{difi:about}
+    \\\\
+    What is relevant here is the sub-part for accessibility, which difi has an entire sub-domain for.
+    This includes requirements like minimum icon or text size, requirements for the readability
+    of the fonts, help for screen-readers and much more.
+    \mycitation{difi:uu}
+    \\\\
+    Now Tizen OS does not offer a build inn screen-reader, which means one could be required to design a screen-reader
+    inside your application which acts in the expected way, and reads the text trough either headphones or the build inn
+    speaker.
 
     %Tving alltid til ny side
     \newpage
