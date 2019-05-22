@@ -56,41 +56,49 @@
     %	Abstract
     %
     \mysection{Abstract}
-    {
     This report is meant to summarize everything I have personally learned or experienced during a project in which
-    I try to develop an application for the \i{"Samsung Galaxy Watch"} using their proprietary development-studio
-    \i{Tizen studio} to allow control of my personal FDM-3D-Printer.
-    }
+    I try to develop an application for the \textit{"Samsung Galaxy Watch"} using their proprietary development-studio
+    \textit{Tizen studio} to allow control of my personal FDM-3D-Printer.
+
+    \mysection{Motivation}
+    The Tizen app-store for the Samsung Galaxy Watch was lackluster at best.
+    The list off available applications is short, and there was nothing available for use with octoprint.
+    Owning a personal open-source 3D-Printer, there are great advantages to having a simple, easily-accessible interface
+    to control and boost safety of the device.
+    \\\\
+    After developing a smaller application towards a different REST-API, the task looked manageable within the given
+    timeframe, and the language not too complicated.
     \newpage
 
     \mysection{Terminology}
-    {
     \mysubsection{Printer parts}
     \begin{itemize}
         \item Extruder: The heated part of the printer which melts the plastic and extrudes it.
         \item Heatbed/printbed: The plate on which a print begins, often heated for better adhesion.
-        Also comes in different materials like glass or PEI.
+        Also comes in different materials like glass or PEI .
         \item Einsy/motherboard: The main electrical board of the printer which everything is connected to.
         \item Filament: The name of the material used to create models, in a continuous string on a spool.
         Usually made of either plastic or nylon, the most common types are PLA, ABS, PET-G, TPU, and PA-12 which holds
         their unique properties, print-settings, and prices.
+        The filament is also what decides the color of the print, and color-pigments might change some properties too.
+        \item MMU: Multi-material-upgrade, expansion for the 3D-Printer which allows the use of multiple filaments and
+        changing of color during printing.
     \end{itemize}
 
     \mysubsection{Technical}
-    {
     \begin{itemize}
+        \item Mesh: A digital file format method for 3d-objects.
+        \item STL/OBJ: The some of the most used digital file formats for the mesh method.
         \item GCODE: The name of the instructions given to the 3D-Printer and \; is comments.
-        These codes refer to single operations eg. \i{M104 S215 \; set extruder temp}.
+        These codes refer to single operations eg. \textit{M104 S215 \; set extruder temp}.
         GCODE might also refer to GCODE-file. \mycitation{reprap:gcode}
         \item GCODE-file: A file containing up to several hundred-thousand lines of GCODE commands.
         Usually one file per print-job.
-        \item Slicer: A program/application which creates a GCODE-file that prints a digital 3d-object.
-        Also handles settings like temperature and speeds.
-        \item Mesh: A digital file format method for 3d-objects.
-        \item STL/OBJ: The some of the most used digital file formats for the mesh method.
+        \item Slice: The operation where a digital mesh is processed to GCODE instructions that will replicate said object.
+        This also handles settings like temperatures and speeds.
+        \item Slicer: A program/application that does the slicing operation.
+        Usually holds default settings for your printer, and some are proprietary.
     \end{itemize}
-    }
-    }
     \newpage
 
     % % % % % % % % % % % % % % % % %
@@ -98,14 +106,12 @@
     %	What is this software
     %
     \mysection{What is 3D-Printing}
-    {
     \centerline{\includegraphics[scale=0.5]{figures/MK3s-home-new}}
     \begin{quote}
         "Any sufficiently advanced technology is indistinguishable from magic." \mycitation{wikiquote:ArthurCClarke}
     \end{quote}
 
     \mysubsection{The technology}
-    {
     3D-Printing is a relative new technology which allows production of computer-designed three-dimensional models
     in certain materials.
     There are many different methods of 3D-Printing like SLS, SLA, DLP and others, but the far most common for home use is FDM,
@@ -125,8 +131,7 @@
     Alas it is still recommended that you stand by the machine for the entirety of the print, while people still leave their
     homes with the dishwasher running.
 
-    \mysubsubsection{Continuous innovation}
-    {
+    \mysubsection{Continuous innovation}
     Computer technology is constantly moving forward, and 3D-Printing is no exception.
     Updates are rolling out continuously for all the different systems, some updates even fix 3.
     party integration problems.
@@ -142,13 +147,13 @@
         \item 2 personal modifications for the project
         \item 5 software updates (and 1 personally compiled pre-release to fix project issue) \mycitation{prusa:github:versions}
     \end{itemize}
-    }
-    }
 
+    \newpage
+
+    \mysection{Technologies}
     \mysubsection{Octoprint}
-    {
     As of now, many 3D-Printers are open-source, which allows users to create their own tools and better the control they have.
-    One such tool is \i{Octoprint}, which runs on a raspberry-Pi, hosting a web interface for your 3d printer.
+    One such tool is \textit{Octoprint}, which runs on a raspberry-Pi, hosting a web interface for your 3d printer.
     \\\\
     This allows the user to read live sensor data from a web-interface, connect a camera, and even add plugins for more advanced control.
     Allowing such an expansion can ease large manufacturing by eg.
@@ -164,15 +169,16 @@
     with little to no support for smaller screens without plugins.
     Luckily they have a REST-API available, and allows for further development.
     Already there are multiple applications made for the different mobile devices, but less is available for the wearable market.
-    }
 
     \mysubsection{REST-API}
-    {
+    The idea of having stateless APIs available to allow different applications is not a new idea.
+    However due to newer web technologies like React and typescript it has slowly been creeping up the line as a market
+    standard.
+    \\\\
+    The REST or Restful part only means that the host/server does not hold any state for you.
     \mycitation{restfulapi}
-    }
 
-    \mysubsection{My Tools}
-    {
+    \mysubsection{Development tools}
     During this project several different tools have been used.
     This is the complete list with a short description
     \begin{itemize}
@@ -190,10 +196,11 @@
         \item Octoprint: A web-service to control open-source 3D-Printers with a web interface.
         Also holds the API and is the tool which will be developed towards.
     \end{itemize}
-    }
 
-    \mysubsection{The infrastructure}
-    {
+    \newpage
+
+    \mysection{The infrastructure}
+    \mysubsection{The setup}
     The 3D-Printer only support GCODE commands using mostly the NIST RS274NGC Interpreter \mycitation{reprap:nist}.'
     This requires GCODE to either be supplied trough a SD-card directly in the 3D-Printer or by a physical connection.
     This is where Octoprint is connected.
@@ -204,10 +211,93 @@
     Octoprint is running it's own web-service and allows certain operations even if the printer is turned off.
     It also hosts an Application-protocol-interface which allows other applications to access and use octoprint as a
     service-point connecting to the printer.
-    This is how the mobile apps connect, and where the new application will connect.
-    }
 
-    }
+    \mysubsection{Planned architecture}
+    \centerline{\includegraphics[scale=0.5]{figures/TizenPrint-architecture.png}}
+    \\\\
+    With this setup the physical printer and webcam is isolated by physical connections from the rest of the
+    world.
+    Octoprint is running as a service on a Raspberry Pi 3B+ (marked red), with access to its filesystem for storage and other
+    external applications like an alternative slicer.
+    Parts of octoprint needs to be exposed directly to the internet to act as a web-interface, these parts are marked as
+    blue.
+    \\\\
+    Please note that the stream is available alone, this is due to the usual browser-implementation and makes development
+    easier as it acts just like a still-image.
+    This is what allows the stream to be accessed even though the rest of the application uses the API .
+    \\\\
+    Octoprint supports too many features to add all on handheld or wearable devices due to their small size, and the
+    main use of such apps should be to add security and control, not complete use.
+    It is therefore viable to require the setup of models to be done by a computer, where one normally would design
+    the model anyways.
+    Here we can slice the model to our preferred settings, and upload the gcode to octoprint where it will be stored on
+    the raspberry pi filesystem.
+    \\\\
+    If wanted the web-interface could also be ignored and the GCODE-file could be put directly on the 3D-Printers SD card
+    manually.
+    Octoprint is still able to read those files and start the printing-job operation on them.
+    From a handheld or wearable device the ability to start a print-job is expected, as this allows a printer operator
+    to use a computer from a distance, and repeatedly start the same or a new job without having to slice again.
+
+    \newpage
+
+    \mysection{Development}
+    \mysubsection{First looks}
+    Development of the Tizen wearable watch application started by installing the tizen-studio.
+    Tizen studio was not available to all operating systems even though it is built around Eclipse which is made in Java.
+    Luckily there is still the ability to compile the source, and thus installing on the main development OS .
+    \\\\
+    The Tizen-studio gives a standard "Hello World" program, which worked in the simulator, but would not deploy to the
+    physical device due to certificate requirement, which was not supported int the used OS .
+    Unfortunately the only other available development computer running Windows 10 did not have a processor which met
+    the requirements to run the emulator, nor was it placed in an environment which allowed the physical device to connect
+    to wifi, thus not being able to deploy.
+    The solution for deploy became dual-booting into windows 10, and borrowing an external wifi-signal in another
+    location, which alone accounted for major delays.
+
+    \mysubsection{Choosing development language}
+    Tizen-studio offers development as either a native application using C++/C or as a web-application running HTML/CSS/JS
+    locally on the device.
+    To try both\; a small dice-throwing application was developed, and it soon became clear that using the emulator to for
+    each test took too long.
+    Secondly the Javascript language has easy to use built inn support for use of APIs, and would greatly increase the
+    efficiency of testing as that could be done on the computer web-browser.
+    Lastly the styling of the application was much easier to change due to a CSS supporting reusable definitions called
+    classed.
+
+    \mysubsection{Getting to know the tools}
+    As an experiment, a smaller easier application was developed\; MyPay.
+    This application was meant to only be used privately, to show the balance on personal bank-accounts, and was later
+    expanded to list and pay electronic invoices.
+    \\\\
+    During the development of said experiment-application, several issues would arrive.
+    This included issues like the project settings needing to allow the use of external connections in order for the
+    wearable-OS to allow the application to connect.
+    \\\\
+    This is where the issue of secrets arouse.
+    Since this application was to be hosted publicly on github, hosting the private addresses and connection secrets for
+    the API would allow other to use the same.
+    This would allow anyone to steal my secrets and take control of the Octoprint-instance and the development 3D-Printer.
+    To prevent this a file was made to hold said secrets, and excluded from git using gitignore, but with instructions in
+    the project Readme.md
+
+    \mysubsection{Inadequacy}
+    Tizen-studio alone did not have many tools that assisted development, and even some of the expected tools like the
+    indention tool did little to nothing.
+    Therefore, since the application was written in such a widely used language, it was possible to change the main
+    development studio.
+    Since Jetbrains has been the standard supplier of development-studios used in most courses, WebStorm became the
+    preferred tool.
+    \\\\
+    For fast testing and development the visual result needed to be displayed often.
+    Since it was able to run from a browser, Google-Chrome (the chromium based browser from google) was used.
+    Google-Chrome has build inn development tools which assists with selecting elements, changing styles and layout, run
+    js commands live in the console, and even debug the code.
+    Even though the browser displays a square layout, the physical-devise does so as well.
+    To aid with this, the background was set to a contrast color, and got a circular box over it to illustrate where
+    the physical frame would be.
+
+
 
     %Tving alltid til ny side
     \newpage
