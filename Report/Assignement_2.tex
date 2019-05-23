@@ -178,29 +178,17 @@
     \\\\
     The REST or Restful part only means that the host/server does not hold any state for you.
     \mycitation{restfulapi}
-
-    \mysubsection{Development tools}
-    During this project several different tools have been used.
-    This is the complete list with a short description
+    \\\\
+    \textbf{NOTE:} This section is to be expanded
     \begin{itemize}
-        \item GIT: Version control tool used to track any changes in any documentation or source-code created
-        \item Github: Version control provider needed to use GIT, which also holds extra tools for development and issue-tracking.
-        As a bonus this is also where both Octoprint and Prusa-Firmware is hosted.
-        \item Intellij WebStorm: An IDE for web development, also supports LaTeX with plugins.
-        Main development studio due to all the tools it provides.
-        \item Tizen IDE: The main development studio has to be used for certificate management, emulator, and device-management.
-        \item Google-Chrome: The main browser used for development.
-        \item Arduino build tools: Used to compile the firmware for the 3d-printer
-        \item Windows 10: Main development OS
-        \item Arch-Linux: Secondary linux-distro development, test and deploy OS
-        \item Raspbian: Light linux-distro OS needed to host octoprint and control the printer.
-        \item Octoprint: A web-service to control open-source 3D-Printers with a web interface.
-        Also holds the API and is the tool which will be developed towards.
+        \item Separation of frontend / backend and its advantages
+        \item Allowing same backend for several devices, applications and interfaces
+        \item Open APIs allow 3d-party integrations
     \end{itemize}
 
     \newpage
 
-    \mysection{The infrastructure}
+    \mysection{Planing the application and infrastructure}
     \mysubsection{The setup}
     The 3D-Printer only support GCODE commands using mostly the NIST RS274NGC Interpreter.
     This requires GCODE to either be supplied trough a SD-card directly in the 3D-Printer or by a physical connection.
@@ -213,6 +201,19 @@
     Octoprint is running it's own web-service and allows certain operations even if the printer is turned off.
     It also hosts an Application-protocol-interface which allows other applications to access and use octoprint as a
     service-point connecting to the printer.
+
+    \mysubsection{Goals of application}
+    The application should first of all aim to substitute an operator in using a 3d-printer, by allowing for easier
+    access to an interface, quick controls and main information like temperature-readings.
+    Ideally it should also act as a small safety feature to keep an eye on a running printer from a distance, even though
+    leaving any running CNC machine is discouraged.
+    \\\\
+    It is therefore essential to the MVP, that the application is able to show a live video-stream of the printer, and
+    read the different temperatures in real time with minimal delay.
+    Control of axis is also a priority, as this is an essential tool while operating the machine before and after
+    print-jobs.
+    Lastly the application should hold an option to start prints, although neither upload nor perform a slicing
+    operation as that would be urological to do on such a small device.
 
     \mysubsection{Planned architecture}
     \centerline{\includegraphics[scale=0.5]{figures/TizenPrint-architecture.png}}
@@ -301,6 +302,34 @@
     To aid with this, the background was set to a contrast color, and got a circular box over it to illustrate where
     the physical frame would be.
 
+    \mysubsection{Security}
+    \textbf{NOTE:} This section is to be expanded
+    \begin{itemize}
+        \item Architecture / Endpoints
+        \item Worst case misuse
+        \item API key
+        \item TLS / HTTPS
+    \end{itemize}
+
+    \mysubsection{Development tools}
+    During this project several different tools have been used.
+    This is the complete list with a short description
+    \begin{itemize}
+        \item GIT: Version control tool used to track any changes in any documentation or source-code created
+        \item Github: Version control provider needed to use GIT, which also holds extra tools for development and issue-tracking.
+        As a bonus this is also where both Octoprint and Prusa-Firmware is hosted.
+        \item Intellij WebStorm: An IDE for web development, also supports LaTeX with plugins.
+        Main development studio due to all the tools it provides.
+        \item Tizen IDE: The main development studio has to be used for certificate management, emulator, and device-management.
+        \item Google-Chrome: The main browser used for development.
+        \item Arduino build tools: Used to compile the firmware for the 3d-printer
+        \item Windows 10: Main development OS
+        \item Arch-Linux: Secondary linux-distro development, test and deploy OS
+        \item Raspbian: Light linux-distro OS needed to host octoprint and control the printer.
+        \item Octoprint: A web-service to control open-source 3D-Printers with a web interface.
+        Also holds the API and is the tool which will be developed towards.
+    \end{itemize}
+
     \newpage
 
     \mysection{Design}
@@ -309,7 +338,7 @@
     Due to the bevels not following a straight line, while the screen effectively is outside the frame does mess with
     the languages.
     Tizen-studio does provide a small package called the Circular-helper.js which is meant to help with some of this.
-    Still it ia often easier to just use strict design and pixel measures.
+    Still it is often easier to just use strict design and pixel measures.
     Such design is usually not viable in web-design due to all the different devices that can access a site, but since
     this is hosted locally this won't be an issue.
     \\\\
@@ -379,7 +408,7 @@
     If each icon holds a probability for misunderstanding, then each icon added will greatly increase the chance
     for at least one icon being misunderstood for each user.
 
-    \mysubsection{Wearable devise}
+    \mysubsection{Wearable device}
     As the intended device is a wearable watch, it is expected to be small in size.
     This physical limitation does also limit the size of internal components greatly, and then heat-dissipation even more.
     Such devices can therefore not hold powerful components, nor large batteries.
