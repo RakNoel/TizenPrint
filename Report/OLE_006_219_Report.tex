@@ -56,55 +56,46 @@
     %	Abstract
     %
     \mysection{Abstract}
-    This report is meant to summarize everything I have personally learned or experienced during a project in which
-    I try to develop an application for the \textit{"Samsung Galaxy Watch"} using their proprietary development-studio
-    \textit{Tizen studio} to allow control of my personal FDM-3D-Printer.
+    This report summarizes everything the development-process during a project which
+    develops an application for the \textit{"Samsung Galaxy Watch"} using the proprietary development-studio
+    \textit{Tizen studio} to allow control and monitoring of open-source FDM-3D-Printers.
+    \\\\
+    The project does require design iterations and time beyond the timespan of this course, and this will therefore
+    aim for a proof of concept rather than a finished product.
 
     \mysection{Motivation}
-    The Tizen app-store for the Samsung Galaxy Watch was lackluster at best.
-    The list off available applications is short, and there was nothing available for use with octoprint.
-    Owning a personal open-source 3D-Printer, there are great advantages to having a simple, easily-accessible interface
-    to control and boost safety of the device.
+    The idea of using smart-watches to control and monitor 3D-Printers is not new, but the Tizen web-store does not
+    currently hold any viable solution.
+    3D-Printers are computer-numeric-control (CNC) machines, and usually requires human intervention during the
+    process.
+    Such an application can allow much greater control, and easy to access monitoring.
+    In turn boosting the safety and reliability of the product.
     \\\\
-    After developing a smaller application towards a different REST-API, the task looked manageable within the given
-    timeframe, and the language not too complicated.
-    \newpage
+    Having no available application to control my 3D-Printer, the only option left was to develop a personal
+    solution.
+    Luckily since the printer was already set up with a control-server hosting a web-interface, development would only
+    include integration towards its application programming interface (API) service.
+    \\\\
+    Working with APIs at earlier occasions, much of the applications logic could be imported, leaving mainly the
+    device-limitations and design.
+    Using online resources for a private project would also not require to much licensing issues, simplifying even the
+    design process.
 
-    \mysection{Terminology}
-    \mysubsection{Printer parts}
-    \begin{itemize}
-        \item Extruder: The heated part of the printer which melts the plastic and extrudes it.
-        \item Heatbed/printbed: The plate on which a print begins, often heated for better adhesion.
-        Also comes in different materials like glass or PEI .
-        \item Einsy/motherboard: The main electrical board of the printer which everything is connected to.
-        \item Filament: The name of the material used to create models, in a continuous string on a spool.
-        Usually made of either plastic or nylon, the most common types are PLA, ABS, PET-G, TPU, and PA-12 which holds
-        their unique properties, print-settings, and prices.
-        The filament is also what decides the color of the print, and color-pigments might change some properties too.
-        \item MMU: Multi-material-upgrade, expansion for the 3D-Printer which allows the use of multiple filaments and
-        changing of color during printing.
-    \end{itemize}
+    \mysection{Acknowledgements}
+    I would like to express my very great appreciation to \textit{***} for the invaluable insight given about the
+    real-world applications of APIs .
+    \\
+    I wish to asseverate the importance of clarity which \textit{Snorre Kim} brought me, while assisting in the
+    design and layout process.
+    \\
+    Lastly I wish to acknowledge my mentor \textit{Jaakko Järvi} for the freedom and professionalism he has provided
+    together with his constructive suggestions.
 
-    \mysubsection{Technical}
-    \begin{itemize}
-        \item Mesh: A digital file format method for 3d-objects.
-        \item STL/OBJ: The some of the most used digital file formats for the mesh method.
-        \item GCODE: The name of the instructions given to the 3D-Printer and \; is comments.
-        These codes refer to single operations eg. \textit{M104 S215 \; set extruder temp}.
-        GCODE might also refer to GCODE-file.
-        \item GCODE-file: A file containing up to several hundred-thousand lines of GCODE commands.
-        Usually one file per print-job.
-        \item Slice: The operation where a digital mesh is processed to GCODE instructions that will replicate said object.
-        This also handles settings like temperatures and speeds.
-        \item Slicer: A program/application that does the slicing operation.
-        Usually holds default settings for your printer, and some are proprietary.
-    \end{itemize}
-    \mycitation{reprap:gcode}
     \newpage
 
     % % % % % % % % % % % % % % % % %
     %
-    %	What is this software
+    %	What is this magic
     %
     \mysection{What is 3D-Printing}
     \centerline{\includegraphics[scale=0.5]{figures/MK3s-home-new}}
@@ -151,6 +142,38 @@
 
     \newpage
 
+    \mysection{Terminology}
+    \mysubsection{Printer parts}
+    \begin{itemize}
+        \item Extruder: The heated part of the printer which melts the plastic and extrudes it.
+        \item Heatbed/printbed: The plate on which a print begins, often heated for better adhesion.
+        Also comes in different materials like glass or PEI .
+        \item Einsy/motherboard: The main electrical board of the printer which everything is connected to.
+        \item Filament: The name of the material used to create models, in a continuous string on a spool.
+        Usually made of either plastic or nylon, the most common types are PLA, ABS, PET-G, TPU, and PA-12 which holds
+        their unique properties, print-settings, and prices.
+        The filament is also what decides the color of the print, and color-pigments might change some properties too.
+        \item MMU: Multi-material-upgrade, expansion for the 3D-Printer which allows the use of multiple filaments and
+        changing of color during printing.
+    \end{itemize}
+
+    \mysubsection{Technical}
+    \begin{itemize}
+        \item Mesh: A digital file format method for 3d-objects.
+        \item STL/OBJ: The some of the most used digital file formats for the mesh method.
+        \item GCODE: The name of the instructions given to the 3D-Printer and \; is comments.
+        These codes refer to single operations eg. \textit{M104 S215 \; set extruder temp}.
+        GCODE might also refer to GCODE-file.
+        \item GCODE-file: A file containing up to several hundred-thousand lines of GCODE commands.
+        Usually one file per print-job.
+        \item Slice: The operation where a digital mesh is processed to GCODE instructions that will replicate said object.
+        This also handles settings like temperatures and speeds.
+        \item Slicer: A program/application that does the slicing operation.
+        Usually holds default settings for your printer, and some are proprietary.
+    \end{itemize}
+    \mycitation{reprap:gcode}
+    \newpage
+
     \mysection{Technologies}
     \mysubsection{Octoprint}
     As of now, many 3D-Printers are open-source, which allows users to create their own tools and better the control they have.
@@ -160,7 +183,7 @@
     Allowing such an expansion can ease large manufacturing by eg.
     allowing the removal of a single part that has failed without having to stop the print and loose it entirely.
     \\\\
-    Octoprint is tackling many common features requested by 3D-printer companies, and hosting them available under the same
+    Octoprint is tackling many common features requested by 3D-Printer companies, and hosting them available under the same
     service.
     This includes web-based automatic slicer, visualization of bed leveling, remote control of axis and temperature, and live camera streaming.
     All this works as both reliability and safety measures for a user, but 3D-Printing is still very complicated and requires
@@ -172,19 +195,17 @@
     Already there are multiple applications made for the different mobile devices, but less is available for the wearable market.
 
     \mysubsection{Rest-API}
+    \mysubsubsection{The technology}
     The idea of having stateless APIs available to allow different applications is not a new idea.
     However due to newer web technologies like React and typescript it has slowly been creeping up the line as a market
     standard.
     \\\\
-    The REST or Restful part only means that the host/server does not hold any state for you.
-    \mycitation{restfulapi}
-    \\\\
-    \textbf{NOTE:} This section is to be expanded
-    \begin{itemize}
-        \item Separation of frontend / backend and its advantages
-        \item Allowing same backend for several devices, applications and interfaces
-        \item Open APIs allow 3d-party integrations
-    \end{itemize}
+    The REST or Restful only states that the host/server does not hold your state.
+    The client therefore has to actively send all relevant information, but is in turn allowed to disseminate the entire
+    application, and only query required information.
+
+    \mysubsubsection{Interview part}
+
 
     \newpage
 
@@ -203,7 +224,7 @@
     service-point connecting to the printer.
 
     \mysubsection{Goals of application}
-    The application should first of all aim to substitute an operator in using a 3d-printer, by allowing for easier
+    The application should first of all aim to substitute an operator in using a 3D-Printer, by allowing for easier
     access to an interface, quick controls and main information like temperature-readings.
     Ideally it should also act as a small safety feature to keep an eye on a running printer from a distance, even though
     leaving any running CNC machine is discouraged.
@@ -322,7 +343,7 @@
         Main development studio due to all the tools it provides.
         \item Tizen IDE: The main development studio has to be used for certificate management, emulator, and device-management.
         \item Google-Chrome: The main browser used for development.
-        \item Arduino build tools: Used to compile the firmware for the 3d-printer
+        \item Arduino build tools: Used to compile the firmware for the 3D-Printer
         \item Windows 10: Main development OS
         \item Arch-Linux: Secondary linux-distro development, test and deploy OS
         \item Raspbian: Light linux-distro OS needed to host octoprint and control the printer.
