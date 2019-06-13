@@ -274,7 +274,7 @@
     \mycitation{reprap:nist}
     \\\\
     Octoprint is running its own web service and allows certain operations even if the printer is turned off.
-    It also hosts an Application protocol interface which allows other applications to access and use octoprint as a
+    It also hosts an Application protocol interface which allows other applications to access and use Octoprint as a
     service point connecting to the printer.
 
     \mysubsection{Goals of application}
@@ -302,7 +302,7 @@
 
     Octoprint is running as a service on a Raspberry Pi 3B+ (marked red), with access to its filesystem for storage and other
     external applications like an alternative slicer.
-    Parts of octoprint needs to be exposed directly to the internet to act as a web interface, these parts are marked as
+    Parts of Octoprint needs to be exposed directly to the internet to act as a web interface, these parts are marked as
     blue.
     \\\\
     Please note that the stream is available alone.
@@ -315,7 +315,7 @@
     for which the full feature set is not needed.
     Meanwhile more complicated features like the setup of models can be done by a computer, where one normally would design
     the model anyways.
-    Here we can slice the model to our preferred settings, and upload the gcode to octoprint where it will be stored on
+    Here we can slice the model to our preferred settings, and upload the gcode to Octoprint where it will be stored on
     the raspberry pi filesystem.
     \\\\
     If wanted, the web interface could also be ignored and the GCODE file could be put directly on the 3D printers SD card
@@ -416,7 +416,7 @@
         \item Arduino build tools: Used to compile the firmware for the 3D printer
         \item Windows 10: Main development OS
         \item Arch Linux: Secondary linux distro development, test and deploy OS
-        \item Raspbian: Light linux distro OS needed to host octoprint and control the printer.
+        \item Raspbian: Light linux distro OS needed to host Octoprint and control the printer.
         \item Octoprint: A web service to control open source 3D printers with a web interface.
         Also holds the API and is the tool which will be developed towards.
     \end{itemize}
@@ -446,9 +446,9 @@
 
     \mysubsection{One page application}
     The setup of Tizen web applications does not support more than one page.
-    Unlike normal browser design where you link to different files on the server, tizen only loads the first page, and
+    Unlike normal browser design where you link to different files on the server, Tizen only loads the first page, and
     refuses to handle anchors (links) as expected.
-    Instead tizen uses a provided JavaScript to display different pages.
+    Instead Tizen uses a provided JavaScript to display different pages.
     This is essentially done by adding and removing a style class, where only the container with the class "ui-page-active"
     is displayed, together with a possible footer which is always displayed.
     \\\\
@@ -465,7 +465,7 @@
     A simple interface is therefore crucial for the printer control applications.
 
     \mysubsection{Small display}
-    The samsung galaxy watch has a display with high resolution, but in design it holds effectively 360 x 360 pixels,
+    The Samsung Galaxy watch has a display with high resolution, but in design it holds effectively 360 x 360 pixels,
     which is really small, only about a fifth of a normal computer screen.
     This limits the size of any text being displayed, and requires a lot of innovative design.
     \\\\
