@@ -58,7 +58,7 @@
     \mysection{Abstract}
     This report summarizes everything I have learned or experienced during the development-process of implementing
     an application for the \textit{"Samsung Galaxy Watch"} using the proprietary development-studio
-    \textit{Tizen studio} to allow control and monitoring of open-source FDM-3D-Printers.
+    \textit{Tizen studio} to allow control and monitoring of the most common open-source 3D-Printers.
     \\\\
     Since the project does require design iterations and time beyond the timespan of this course, and this will therefore
     aim for a proof of concept rather than a finished product.
@@ -82,6 +82,9 @@
     device-limitations and design.
     Using online resources for a private project would also not require to much licensing issues, simplifying even the
     design process.
+    \\\\
+    Due to the vast difference in both functionality and behaviour between different 3D-Printer technologies, this project
+    will only cover the most common home/hobby technology.
 
     \mysection{Acknowledgements}
     I would like to express my very great appreciation to \textit{***} for the invaluable insight given about the
@@ -108,26 +111,34 @@
     \mysubsection{The technology}
     3D-Printing is a relative new technology which allows production of computer-designed three-dimensional models
     in certain materials.
-    There are many different methods of 3D-Printing like SLS, SLA, DLP and others, but the far most common for home use is FDM,
+    There are many different methods of 3D-Printing, but the far most common for home use is \textit{Fused filament 
+    fabrication} (FFF), or more commonly known as the trademarked term \textit{Fused deposition modeling} (FDM),
     which is the type used in this project.
     \\\\
-    FDM stands for Filament-deposition-modeling\; a method which extrudes thin strings of plastic in layers as thin as
-    0.05mm and up to 1mm, controlled by CNC(computer numeric control).
-    This allows the creation of models with great detail and low cost, with the accuracy of stepper-motors.
-    It allows to re-use the commands and produce almost exact replicas of the same digital objects with little to no extra
-    work.
+    FDM stands for Filament-deposition-modeling; a method which extrudes thin strings of thermoplastic filament 
+    in layers as thin as 0.05mm and up to 1mm, controlled by computer numeric control (CNC) code.
+    This allows the creation of models with great detail at a low cost, with the accuracy of stepper-motors.
+    It also allows to re-use the commands and produce almost exact replicas of the same digital objects with 
+    little to no extra work.
     \\\\
-    Unfortunately this is a tedious process which can take several hours or even days.
-    There is little to no control element for the result, while there are countless factors which plays a role for
-    the result of a single print.
-    Also if an error occurs there is probably no way to recover and you have to start over.
-    Luckily the technology is getting better, and more sensors has been added, like filament-runout, and collision detection.
-    Alas it is still recommended that you stand by the machine for the entirety of the print, while people still leave their
+    Unfortunately this 3D-Printing process is tedious, and can take several hours or even days.
+    Since 3D-Printers are CNC machines, the FDM process is only a one way communication between the controller
+    and the stepper motors.
+    Meaning that during the process there exist little to no feedback from sensors for the result, while there are countless 
+    factors that play a role for the product from a single print opperation.
+    While printing any model, small errors that go undetected can be detrimental and require human intervention.
+    Some failures can even cause harm to the machine itself, and has caused fires due to the high temperatures involved in
+    the process.
+    \\\\
+    Luckily the technology is getting better, and more sensors are being added. 
+    This may include sensors for filament-runout to prevent printing without filament, or collision detection which detects
+    if any motor meets resistance preventing damage to itself or humans.
+    Alas it is still recommended that you stand by the machine for the entirety of the print, but people still leave their
     homes with the dishwasher running.
 
     \mysubsection{Continuous innovation}
     Computer technology is constantly moving forward, and 3D-Printing is no exception.
-    Updates are rolling out continuously for all the different systems, some updates even fix 3.
+    Updates are rolling out continuously for all the different systems, some updates even fix third
     party integration problems.
     \\\\
     What really changes 3D-Printer updates is the possibility of sending digital physical upgrades, which you can print
@@ -174,6 +185,7 @@
         Usually holds default settings for your printer, and some are proprietary.
     \end{itemize}
     \mycitation{reprap:gcode}
+    
     \newpage
 
     \mysection{Technologies}
