@@ -297,11 +297,12 @@
     Luckily there is still the ability to compile the source, and thus installing on the main development OS .
     \\\\
     The Tizen-studio gives a standard "Hello World" program, which worked in the simulator, but would not deploy to the
-    physical device due to certificate requirement, which was not supported int the used OS .
+    physical device due to certificate requirement, which was not supported in the used OS .
+    \\\\
     Unfortunately the only other available development computer running Windows 10 did not have a processor which met
     the requirements to run the emulator (Hyper-V compatible), nor was it placed in an environment which allowed the physical device to connect
     to wifi, thus not being able to deploy.
-    The solution for deploy became dual-booting into windows 10, and borrowing an external wifi-signal in another
+    The solution for deploy meant dual-booting into windows 10, and borrowing an external wifi-signal in another
     location, which alone accounted for major delays.
 
     \mysubsection{Choosing development language}
@@ -312,41 +313,49 @@
     Secondly the Javascript language has easy to use built inn support for use of APIs, and would greatly increase the
     efficiency of testing as that could be done on the computer web-browser.
     Lastly the styling of the application was much easier to change due to a CSS supporting reusable definitions called
-    classed.
+    classes.
     \\\\
     It is now also possible to develop in .NET C\# using Xamarin in microsoft visual studio.
 
     \mysubsection{Getting to know the tools}
-    As an experiment, a smaller easier application was developed\; MyPay.
-    This application was meant to only be used privately, to show the balance on personal bank-accounts, and was later
-    expanded to list and pay electronic invoices.
+    As an experiment, the simpler experimental application (MyPay) was developed in paralell.
+    This application shows the balance on personal bank-accounts, and was later expanded to list and pay electronic invoices.
     \\\\
-    During the development of said experiment-application, several issues would arrive.
+    During the development of said experiment-application, several issues were encountered.
     This included issues like the project settings needing to allow the use of external connections in order for the
     wearable-OS to allow the application to connect.
     \\\\
-    This is where the issue of secrets arouse.
-    Since this application was to be hosted publicly on github, hosting the private addresses and connection secrets for
-    the API would allow other to use the same.
-    This would allow anyone to steal my secrets and take control of the Octoprint-instance and the development 3D-Printer.
+    This is where the issue of secrets arose.
+    Since this application was to be hosted publicly on github, hosting private addresses and connection secrets for
+    the API would allow others to gain unauthorized access.
+    This would allow anyone to steal secrets and take control of the Octoprint-instance and the development 3D-Printer.
     To prevent this a file was made to hold said secrets, and excluded from git using gitignore, but with instructions in
     the project Readme.md
 
     \mysubsection{Inadequacy}
-    Tizen-studio alone did not have many tools that assisted development, and even some of the expected tools like the
-    indention tool did little to nothing.
-    Therefore, since the application was written in such a widely used language, it was possible to change the main
-    development studio.
-    Since Jetbrains has been the standard supplier of development-studios used in most courses, WebStorm became the
+    Tizen-studio alone does not have many tools that assists development, and even some of the expected tools like the
+    indention tool do little to nothing.
+    Therefore, since TizenPrint is written in such a widely used web-languages (HTML/CSS/JS), it is possible to change
+    the IDE .
+    Since \textit{Jetbrains} has been the standard supplier of IDEs used in most courses, their product \textit{WebStorm} became the
     preferred tool.
     \\\\
-    For fast testing and development the visual result needed to be displayed often.
-    Since it was able to run from a browser, Google-Chrome (the chromium based browser from google) was used.
-    Google-Chrome has build inn development tools which assists with selecting elements, changing styles and layout, run
-    js commands live in the console, and even debug the code.
-    Even though the browser displays a square layout, the physical-devise does so as well.
-    To aid with this, the background was set to a contrast color, and got a circular box over it to illustrate where
+    For fast testing and development; a visual result of the product being developed needs to be displayed after every change made.
+    Since the TizenPrint application was written in the simple web-languages it was able to run from a browser.
+    The web browser \textit{Google Chrome} has build inn development tools, and was selected for this projects mainly due to its
+    ability to run javascript commands in a console and debug.
+    \\\\
+    While most browsers will display a square layout, the device holds a circular display.
+    Even though the display is circular, the device uses the screen as square, and will place content outside the physical screen,
+    not displaying anything.
+    To expand the design, the background was set to a contrast color, and got a circular box over it to illustrate where
     the physical frame would be.
+
+    \centerline{
+        \includegraphics[scale=0.5]{figures/application-xyz-image.png}
+        \captionof{figure}{Screenshot of the application displayed in the \textit{Google Chrome} web browser. The black parts 
+        of the square will be placed outside the physical screen on the device. }
+    }
 
     \mysubsection{Security}
     \textbf{NOTE:} This section is to be expanded
