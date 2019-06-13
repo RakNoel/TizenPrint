@@ -87,10 +87,10 @@
     \\\\
     This application is to be named TizenPrint, and shall become a valuable security mechanism for my personal use
     on my 3D-Printer.
-    It is also worth noting that an experimental application named \textit{MyPay} was started before and developed 
-    in paralell to this application.
+    It is also worth noting that an experimental application named \textit{MyPay} was started before and developed
+    in parallel to this application.
     Both aforementioned applications are totally independent, but does share some code and ideas.
-    Threrfore it is feasable to mention also MyPay in this report.
+    Therefore it is feasible to mention also MyPay in this report.
 
     \mysection{Acknowledgements}
     I would like to express my very great appreciation to \textit{***} for the invaluable insight given about the
@@ -121,7 +121,8 @@
     fabrication} (FFF), or more commonly known as the trademarked term \textit{Fused deposition modeling} (FDM),
     which is the type used in this project.
     \\\\
-    FDM stands for Filament-deposition-modeling; a method which extrudes thin strings of thermoplastic filament 
+    FDM stands for Filament-deposition-modeling;
+    a method which extrudes thin strings of thermoplastic filament
     in layers as thin as 0.05mm and up to 1mm, controlled by computer numeric control (CNC) code.
     This allows the creation of models with great detail at a low cost, with the accuracy of stepper-motors.
     It also allows to re-use the commands and produce almost exact replicas of the same digital objects with 
@@ -130,13 +131,13 @@
     Unfortunately this 3D-Printing process is tedious, and can take several hours or even days.
     Since 3D-Printers are CNC machines, the FDM process is only a one way communication between the controller
     and the stepper motors.
-    Meaning that during the process there exist little to no feedback from sensors for the result, while there are countless 
-    factors that play a role for the product from a single print opperation.
+    Meaning that during the process there exist little to no feedback from sensors for the result, while there are countless
+    factors that play a role for the product from a single print operation.
     While printing any model, small errors that go undetected can be detrimental and require human intervention.
     Some failures can even cause harm to the machine itself, and has caused fires due to the high temperatures involved in
     the process.
     \\\\
-    Luckily the technology is getting better, and more sensors are being added. 
+    Luckily the technology is getting better, and more sensors are being added.
     This may include sensors for filament-runout to prevent printing without filament, or collision detection which detects
     if any motor meets resistance preventing damage to itself or humans.
     Alas it is still recommended that you stand by the machine for the entirety of the print, but people still leave their
@@ -201,8 +202,9 @@
     \\\\
     The Octoprint server allows the user to read live sensor data from a web-interface, connect a camera, and even add plugins 
     for more advanced control.
-    Allowing such an expansion can ease large manufacturing by, e.g. ,
-    allowing the removal of a single part that has failed without having to stop the print loosing it entirely.
+    Allowing such an expansion can ease large manufacturing by, e.
+    g.
+    , allowing the removal of a single part that has failed without having to stop the print loosing it entirely.
     \\\\
     Octoprint is tackling many common features requested by 3D-Printer companies, and hosting them available under the same
     service.
@@ -260,7 +262,8 @@
     \mysubsection{Planned architecture}
     \centerline{
         \includegraphics[scale=0.5]{figures/TizenPrint-architecture.png}
-        \captionof{figure}{Planned Architecture; With this setup the physical printer and webcam is isolated by physical 
+    \captionof{figure}{Planned Architecture;
+    With this setup the physical printer and webcam is isolated by physical
         connections from the rest of the world.}
     }
 
@@ -269,12 +272,12 @@
     Parts of octoprint needs to be exposed directly to the internet to act as a web-interface, these parts are marked as
     blue.
     \\\\
-    Please note that the stream is available alone. This is due to the usual browser-implementation and makes development
-    easier as it acts just like a still-image.
+    Please note that the stream is available alone.
+    This is due to the usual browser-implementation and makes development easier as it acts just like a still-image.
     This is what allows the stream to be accessed even though the rest of the application uses the API .
     \\\\
-    Handheld and wearable devices are small in pshysical size. It is therefore not feasable to support all of Octoprints
-    features on such devices.
+    Handheld and wearable devices are small in physical size.
+    It is therefore not feasible to support all of Octoprints features on such devices.
     This is usually not a problem because such devices would typically be used mainly for monitoring and setting up printing,
     for which the full feature set is not needed.
     Meanwhile more complicated features like the setup of models can be done by a computer, where one normally would design 
@@ -318,7 +321,7 @@
     It is now also possible to develop in .NET C\# using Xamarin in microsoft visual studio.
 
     \mysubsection{Getting to know the tools}
-    As an experiment, the simpler experimental application (MyPay) was developed in paralell.
+    As an experiment, the simpler experimental application (MyPay) was developed in parallel.
     This application shows the balance on personal bank-accounts, and was later expanded to list and pay electronic invoices.
     \\\\
     During the development of said experiment-application, several issues were encountered.
@@ -340,7 +343,8 @@
     Since \textit{Jetbrains} has been the standard supplier of IDEs used in most courses, their product \textit{WebStorm} became the
     preferred tool.
     \\\\
-    For fast testing and development; a visual result of the product being developed needs to be displayed after every change made.
+    For fast testing and development;
+    a visual result of the product being developed needs to be displayed after every change made.
     Since the TizenPrint application was written in the simple web-languages it was able to run from a browser.
     The web browser \textit{Google Chrome} has build inn development tools, and was selected for this projects mainly due to its
     ability to run JavaScript commands in a console and debug.
@@ -353,8 +357,8 @@
 
     \centerline{
         \includegraphics[scale=0.5]{figures/application-xyz-image.png}
-        \captionof{figure}{Screenshot of the application displayed in the \textit{Google Chrome} web browser. The black parts 
-        of the square will be placed outside the physical screen on the device. }
+    \captionof{figure}{Screenshots of the application displayed in the \textit{Google Chrome} web browser.
+    The black parts of the square will be placed outside the physical screen on the device. }
     }
 
     \mysubsection{Security}
@@ -391,7 +395,7 @@
     \mysubsection{Circular display}
     Working with a circular display is a rather interesting concept.
     Due to the bevels not following a straight line, while the screen effectively is outside the frame, it does mess with
-    the design and layout languages CSS and HTML.
+    the design and layout languages CSS and HTML .
     Tizen-studio does provide a small package called the Circular-helper.js which is meant to support developers by 
     keeping elements inside the frame on the device.
     Still it is often easier to just use strict design and pixel measures.
@@ -426,7 +430,7 @@
     Most applications are therefore designed only to show the most relevant information to a user.
     It is therefore important to have the app show the relevant information fast, with few interactions.
     For even a bit more complex interactions a larger device would be a more appealing choice.
-    A simple interface is therefore crucial for the printer controll applications.
+    A simple interface is therefore crucial for the printer control applications.
 
     \mysubsection{Small display}
     The samsung galaxy watch has a display with high resolution, but in design it holds effectively 360 x 360 pixels,
@@ -502,7 +506,7 @@
     \\\\
     Now Tizen OS does offer a lot of build inn accessibility features, but is overly complicated to implement into a new
     application.
-    The consequence of this is that few avalible applications implements screen readers,an can not be used with a screen reader.
+    The consequence of this is that few available applications implements screen readers,an can not be used with a screen reader.
     This is especially problematic, as screen readers can usually manage to browse most features and web pages even though it is not
     implemented directly.
 
