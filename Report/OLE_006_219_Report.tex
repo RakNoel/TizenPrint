@@ -310,7 +310,7 @@
     locally on the device.
     To try both\; a small dice-throwing application was developed, and it soon became clear that using the emulator to for
     each test took too long.
-    Secondly the Javascript language has easy to use built inn support for use of APIs, and would greatly increase the
+    Secondly the JavaScript language has easy to use built inn support for use of APIs, and would greatly increase the
     efficiency of testing as that could be done on the computer web-browser.
     Lastly the styling of the application was much easier to change due to a CSS supporting reusable definitions called
     classes.
@@ -343,7 +343,7 @@
     For fast testing and development; a visual result of the product being developed needs to be displayed after every change made.
     Since the TizenPrint application was written in the simple web-languages it was able to run from a browser.
     The web browser \textit{Google Chrome} has build inn development tools, and was selected for this projects mainly due to its
-    ability to run javascript commands in a console and debug.
+    ability to run JavaScript commands in a console and debug.
     \\\\
     While most browsers will display a square layout, the device holds a circular display.
     Even though the display is circular, the device uses the screen as square, and will place content outside the physical screen,
@@ -390,16 +390,17 @@
     \mysection{Design}
     \mysubsection{Circular display}
     Working with a circular display is a rather interesting concept.
-    Due to the bevels not following a straight line, while the screen effectively is outside the frame does mess with
-    the languages.
-    Tizen-studio does provide a small package called the Circular-helper.js which is meant to help with some of this.
+    Due to the bevels not following a straight line, while the screen effectively is outside the frame, it does mess with
+    the design and layout languages CSS and HTML.
+    Tizen-studio does provide a small package called the Circular-helper.js which is meant to support developers by 
+    keeping elements inside the frame on the device.
     Still it is often easier to just use strict design and pixel measures.
-    Such design is usually not viable in web-design due to all the different devices that can access a site, but since
-    this is hosted locally this won't be an issue.
+    Such design is usually not viable in normal web-design due to all the different devices that can access a site, but
+    due to the application only supporting one device that is not an issue.
     \\\\
     Another aspect of the circular design is that it allows for some innovative figures and designs.
-    Even though this limits an already small screen, it allows the design to break certain standards, and move objects
-    closer to the center of the screen.
+    Even though such a circular construction limits an already small screen, it allows the design to break certain standards, 
+    and move objects closer to the center of the screen.
     This forces the look to become less structured, and applies a more natural feel to almost any design,
     while only displaying the most relevant information.
     \mycitation{samsung:developer:galaxy-watch:DesignPrinciples}
@@ -408,28 +409,24 @@
     the edges of the device.
 
     \mysubsection{One page application}
-    The setup off Tizen webb applications does not support more than one page.
+    The setup of Tizen web applications does not support more than one page.
     Unlike normal browser design where you link to different files on the server, tizen only loads the first page, and
     refuses to handle anchors (links) as expected.
-    Instead tizen uses a provided javascript to display different pages.
+    Instead tizen uses a provided JavaScript to display different pages.
     This is essentially done by adding and removing a style-class, where only the container with the class "ui-page-active"
     is displayed, together with a possible footer which is always displayed.
     \\\\
     One page application files tend to get rather large, and can slow down development.
-    Sometimes trickery can be used to load other files by Iframes and so on, but often does not have the intended effect.
+    Sometimes trickery can be used to load other files by Iframes and so on, but this often does not have the intended effect.
     It therefore becomes essential to move all possible aspects outside of the HTML, like scripts and SVGs in their own
     files.
 
     \mysubsection{Attention span}
     Wearable devices like watches are made to only be glanced at, usually while moving.
-    Most applications are therefore designed only to show the utter most relevant information to a user.
-    It's therefore important to have the app show the relevant information fast, with little interactions,
-    if not a user would just use the phone.
-    \\\\
-    This is highly relevant the development of this application, as one would rather use a smartphone to do certain
-    operations if the interface is tricky.
-    Even so\; if the user experience of the application succeeds in keeping the interaction low, it would be proffered
-    to use for smaller tasks, like starting a new job, preheating, or controlling axis.
+    Most applications are therefore designed only to show the most relevant information to a user.
+    It is therefore important to have the app show the relevant information fast, with few interactions.
+    For even a bit more complex interactions a larger device would be a more appealing choice.
+    A simple interface is therefore crucial for the printer controll applications.
 
     \mysubsection{Small display}
     The samsung galaxy watch has a display with high resolution, but in design it holds effectively 360 x 360 pixels,
@@ -448,7 +445,7 @@
     Also, the expected functionality of the physical inputs needs to be apprised for the user.
 
     \mysubsection{The problem of icons}
-    Regrettably icons is not a fix-all solution to this problem, and does come at its own cost.
+    Regrettably icons is not a fix-all solution for small displays, and does come at its own cost.
     Even though most feel like icons does help with explaining the expected behaviour or meaning, they should only be used
     to assist the explanation with a text.
     This is due to the many icons being used not necessarily being standardised, or the illustrated object unknown to a
@@ -467,21 +464,17 @@
     As the intended device is a wearable watch, it is expected to be small in size.
     This physical limitation does also limit the size of internal components greatly, and then heat-dissipation even more.
     Such devices can therefore not hold powerful components, nor large batteries.
-    Many other devices (eg\. the apple watch), limits the thread requirements of their applications to prevent bad
+    Many other devices (e.g., the apple watch), limits the thread requirements of their applications to prevent bad
     development to impact the battery life of their device.
     \\\\
-    Tizen OS does not set any such visible limits, and it's therefore recommended to limit background processes, and hard
+    Tizen OS does not set any such visible limits, and it is therefore recommended to limit background processes, and hard
     operations.
-    In the development of this app this was discovered when the stream was added.
+    In the development of this app this was discovered when a stream was added.
     Due to the single-page design of the application the stream was updated continuously, as long as the app was open,
     even if it was only showing temperatures.
     This lead to major decrease in battery-levels after only a few minutes of testing.
     \\\\
-    Streaming also required constant internet access, downloading a high quality photo.
-    Since the watch uses what internet it has available, it being a mobile device might eat up an entire month of
-    mobile-data within just a couple of hours.
-    \\\\
-    The solution to both aforementioned usage-problems was simply to load\/unload the stream, loading it only when it was
+    The solution to both aforementioned usage-problems was simply to load/unload the stream, loading it only when it was
     required.
 
     \mysubsection{Accessibility}
