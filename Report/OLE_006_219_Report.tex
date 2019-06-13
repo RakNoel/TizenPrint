@@ -72,7 +72,7 @@
     an application for the \textit{"Samsung Galaxy Watch"} using the proprietary IDE
     \textit{Tizen studio} to allow control and monitoring of the most common open source 3D printers.
     \\\\
-    Since the project does require design iterations and time beyond the timespan of this course, and this will therefore
+    Since the project does require design iterations and time beyond the timespan of this course, this will therefore
     aim for a proof of concept rather than a finished product.
     Still the project shall cover the integration of different solutions and technologies required for a functional
     application.
@@ -95,14 +95,14 @@
     Using online resources for a private project would also not require to much licensing issues, simplifying even the
     design process.
     Unfortunately due to the vast difference in both functionality and behaviour between different 3D printer
-    technologies, this project will only cover the most common home/hobby technology.
+    technologies, this project will only cover the most common home/hobby technologies.
     \\\\
     This application is to be named TizenPrint, and shall become a valuable security mechanism for my personal use
     on my 3D printer.
     It is also worth noting that an experimental application named \textit{MyPay} was started before and developed
     in parallel to this application.
-    Both aforementioned applications are totally independent, but does share some code and ideas.
-    Therefore it is feasible to mention also MyPay in this report.
+    Both aforementioned applications are totally independent, but do share some code and ideas.
+    Therefore it is feasible to mention MyPay as well.
 
     \newpage
 
@@ -134,7 +134,7 @@
     a method which extrudes thin strings of thermoplastic filament
     in layers as thin as 0.05mm and up to 1mm, controlled by computer numeric control (CNC) code.
     This allows the creation of models with great detail at a low cost, with the accuracy of stepper motors.
-    It also allows to re use the commands and produce almost exact replicas of the same digital objects with
+    It also allows for the reuse of commands to produce almost exact replicas of the same digital objects with
     little to no extra work.
     \\\\
     Unfortunately this 3D printing process is tedious, and can take several hours or even days.
@@ -165,7 +165,7 @@
     \begin{itemize}
         \item 2 physical updates
         \item 1 physical major version upgrade, requiring some new manufacturer parts
-        \item 2 personal modifications for the project
+        \item 2 personal moDIFIcations for the project
         \item 5 software updates (and 1 personally compiled pre release to fix project issue) \mycitation{prusa:github:versions}
     \end{itemize}
 
@@ -189,10 +189,10 @@
     \mysubsection{Technical}
     \begin{itemize}
         \item Mesh: A digital file format method for 3D objects.
-        \item STL/OBJ: The some of the most used digital file formats for the mesh method.
-        \item GCODE: The name of the instructions given to the 3D printer and \; is comments.
-        These codes refer to single operations eg. \textit{M104 S215 \; set extruder temp}.
-        GCODE might also refer to GCODE file.
+        \item STL/OBJ: Some of the most used digital file formats for the mesh method.
+        \item GCODE: The name of the instructions given to the 3D printer and comments.
+        These codes refer to single operations eg. \textit{M104 S215 ; set extruder temp}.
+        GCODE might also refer to a GCODE file.
         \item GCODE file: A file containing up to several hundred thousand lines of GCODE commands.
         Usually one file per print job.
         \item Slice: The operation where a digital mesh is processed to GCODE instructions that will replicate said object.
@@ -208,13 +208,15 @@
     \mysubsection{Octoprint}
     As of now, many 3D printers are open source, which allows users to create their own tools and better the control they have.
     One such tool is \textit{Octoprint}, which runs on a raspberryPi, hosting a web interface for your 3D printer.
+    Being the most uses free solution to add wifi to printers, while also being actively supported by the printer software,
+    Octoprint became the most logical option.
     \\\\
     The Octoprint server allows the user to read live sensor data from a web interface, connect a camera, and even add plugins
     for more advanced control.
-    Allowing such an expansion can ease large manufacturing by, e.g.
-    , allowing the removal of a single part that has failed without having to stop the print loosing it entirely.
+    Allowing such an expansion can ease large manufacturing by, e.g.,
+    allowing the removal of a single part that has failed without having to stop the print losing it entirely.
     \\\\
-    Octoprint is tackling many common features requested by 3D printer companies, and hosting them available under the same
+    Octoprint handles many common features required for 3D printing, and hosting them available under the same
     service.
     This includes web based automatic slicer, visualization of bed leveling, remote control of axis and temperature, and live camera streaming.
     All this works as both reliability and safety measures for a user, but 3D printing is still very complicated and requires
@@ -227,7 +229,7 @@
 
     \mysubsection{Rest-API}
     \mysubsubsection{The technology}
-    An application programming interface, is a gateway within an application designed for computer interactions.
+    An application programming interface is a gateway within an application designed for computer interactions.
     This allows any application to query the API and handle the answer as standardized formats.
     \\\\
     The REST or Restful only states that the host/server does not hold your state.
@@ -242,7 +244,7 @@
     \begin{quote}
         "It is no silver bullet, but a powerful tool."
         \begin{flushright}
-            \tiny{--- Christoffer O. Hern\ae s, CDO. Sbanken}
+            \tiny{--- Christoffer O. Hern\ae s, CDO. at Sbanken, about APIs}
         \end{flushright}
     \end{quote}
 
@@ -254,8 +256,8 @@
     This allows the users to develop any automated solution themselves, which we can see some larger businesses doing.
     \\\\
     In the fintech market we have seen several uses of APIs, especially since the PSD2 directive was added by the EU .
-    A popular example is how many norwegian banks are allowing the importing of external accounts, and the import of the
-    norwegian state student loan service \textit{L\aa nekassen} into Sbanken
+    A popular example is how many Norwegian banks are allowing the importing of external accounts, and the import of the
+    Norwegian state student loan service \textit{L\aa nekassen} into Sbanken
     \mycitation{laanekassen:psd2:sbanken}
     \\\\
     Other (especially open source) applications can expose the entire application as an API allowing users to contribute
@@ -266,8 +268,8 @@
 
     \mysection{Planing the application and infrastructure}
     \mysubsection{The setup}
-    The 3D printer only support GCODE commands using mostly the NIST RS274NGC Interpreter.
-    This requires GCODE to either be supplied trough a SD card directly in the 3D printer or by a physical connection.
+    The 3D printer only supports GCODE commands using mostly the NIST RS274NGC Interpreter.
+    This requires GCODE to either be supplied trough an SD card directly in the 3D printer or by a physical connection.
     This is where Octoprint is connected.
     Octoprint is running on a RaspberryPi 3B+ using the Raspbian-Lite OS, in a custom built casing on the printer.
     This creates a small computer with a physical connection, and since Octoprint is accessible trough the web interface
@@ -318,7 +320,7 @@
     Meanwhile more complicated features like the setup of models can be done by a computer, where one normally would design
     the model anyways.
     Here we can slice the model to our preferred settings, and upload the gcode to Octoprint where it will be stored on
-    the raspberry pi filesystem.
+    the Raspberry Pi filesystem.
     \\\\
     If wanted, the web interface could also be ignored and the GCODE file could be put directly on the 3D printers SD card
     manually.
@@ -353,7 +355,7 @@
     Lastly the styling of the application was much easier to change due to a CSS supporting reusable definitions called
     classes.
     \\\\
-    It is now also possible to develop in .NET C\# using Xamarin in microsoft visual studio.
+    It is now also possible to develop in .NET C\# using Xamarin in Microsoft Visual Studio.
 
     \mysubsection{Getting to know the tools}
     As an experiment, the simpler experimental application (MyPay) was developed in parallel.
@@ -368,11 +370,11 @@
     the API would allow others to gain unauthorized access.
     This would allow anyone to steal secrets and take control of the Octoprint instance and the development 3D printer.
     To prevent this a file was made to hold said secrets, and excluded from git using gitignore, but with instructions in
-    the project Readme.md
+    the project Readme.md.
 
     \mysubsection{Inadequacy}
     Tizen studio alone does not have many tools that assists development, and even some of the expected tools like the
-    indention tool do little to nothing.
+    indentation tool do little to nothing.
     Therefore, since TizenPrint is written in such a widely used web languages (HTML/CSS/JS), it is possible to change
     the IDE .
     Since \textit{Jetbrains} has been the standard supplier of IDEs used in most courses, their product \textit{WebStorm} became the
@@ -381,7 +383,7 @@
     For fast testing and development;
     a visual result of the product being developed needs to be displayed after every change made.
     Since the TizenPrint application was written in the simple web languages it was able to run from a browser.
-    The web browser \textit{Google Chrome} has build inn development tools, and was selected for this projects mainly due to its
+    The web browser \textit{Google Chrome} has build inn development tools, and was selected for this project mainly due to its
     ability to run JavaScript commands in a console and debug.
     \\\\
     While most browsers will display a square layout, the device holds a circular display.
@@ -444,7 +446,7 @@
     while only displaying the most relevant information.
     \mycitation{samsung:developer:galaxy-watch:DesignPrinciples}
     \\\\
-    The circular bevels therefore promotes the use of rounded scrollbars, single displayed items, and even bent text along
+    The circular bevels therefore promote the use of rounded scrollbars, single displayed items, and even bent text along
     the edges of the device.
 
     \mysubsection{One page application}
@@ -477,7 +479,7 @@
     page.
     \\\\
     Another solution is to implement popper usage of the physical input from the device.
-    The physical devise does have 2 buttons, and a rotating bevel, though only one of the buttons allows
+    The physical device does have 2 buttons, and a rotating bevel, though only one of the buttons allows
     for change.
     This adds easier to reach tactile buttons with a response to the user, but testing of these inputs does require an
     emulator, which slows down development.
@@ -520,7 +522,7 @@
     \begin{figure}[h!]
         \centering
         \includegraphics[scale=0.5]{figures/hoved_engelsk_farge_positiv.jpg}
-        \caption{A Difi logo from their website.}
+        \caption{A DIFI logo from their website.}
     \end{figure}
     \mysubsubsection{Legal requirements}
     Another major issue unveiled during development is the lack of integrated accessibility features.
@@ -534,18 +536,18 @@
     and some of what would have to be done in the case of publishing and profiting.
 
     \mysubsubsection{DIFI standards}
-    DIFI translated is (Agency for Public Management and eGovernment).
-    As an organization they handle many parts for human prosperity, and includes many different topics.
+    DIFI, the Norwegian Agency for Public Management and eGovernment, handles issues related to human prosperity
+    in the digital world.
     \mycitation{difi:about}
     \\\\
-    What is relevant here is the sub part for accessibility, which difi has an entire sub domain for.
+    What is relevant here is the sub part for accessibility, which DIFI has an entire sub domain for.
     This includes requirements like minimum icon or text size, requirements for the readability
     of the fonts, help for screen readers and much more.
     \mycitation{difi:uu}
     \\\\
-    Now Tizen OS does offer a lot of build inn accessibility features, but is overly complicated to implement into a new
+    Now Tizen OS does offer a lot of built inn accessibility features, but is overly complicated to implement into a new
     application.
-    The consequence of this is that few available applications implements screen readers,an can not be used with a screen reader.
+    The consequence of this is that few available applications implements screen readers, and can not be used with a screen reader.
     This is especially problematic, as screen readers can usually manage to browse most features and web pages even though it is not
     implemented directly.
 
