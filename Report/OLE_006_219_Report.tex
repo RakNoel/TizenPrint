@@ -252,31 +252,35 @@
     operation as that would be illogical to do on such a small device.
 
     \mysubsection{Planned architecture}
-    \centerline{\includegraphics[scale=0.5]{figures/TizenPrint-architecture.png}}
+    \centerline{
+        \includegraphics[scale=0.5]{figures/TizenPrint-architecture.png}
+        \captionof{figure}{Planned Architecture; With this setup the physical printer and webcam is isolated by physical 
+        connections from the rest of the world.}
+    }
 
-    With this setup the physical printer and webcam is isolated by physical connections from the rest of the
-    world.
     Octoprint is running as a service on a Raspberry Pi 3B+ (marked red), with access to its filesystem for storage and other
     external applications like an alternative slicer.
     Parts of octoprint needs to be exposed directly to the internet to act as a web-interface, these parts are marked as
     blue.
     \\\\
-    Please note that the stream is available alone, this is due to the usual browser-implementation and makes development
+    Please note that the stream is available alone. This is due to the usual browser-implementation and makes development
     easier as it acts just like a still-image.
     This is what allows the stream to be accessed even though the rest of the application uses the API .
     \\\\
-    Octoprint supports too many features to add all on handheld or wearable devices due to their small size, and the
-    main use of such apps should be to add security and control, not complete use.
-    It is therefore viable to require the setup of models to be done by a computer, where one normally would design
+    Handheld and wearable devices are small in pshysical size. It is therefore not feasable to support all of Octoprints
+    features on such devices.
+    This is usually not a problem because such devices would typically be used mainly for monitoring and setting up printing,
+    for which the full feature set is not needed.
+    Meanwhile more complicated features like the setup of models can be done by a computer, where one normally would design 
     the model anyways.
     Here we can slice the model to our preferred settings, and upload the gcode to octoprint where it will be stored on
     the raspberry pi filesystem.
     \\\\
-    If wanted the web-interface could also be ignored and the GCODE-file could be put directly on the 3D-Printers SD card
+    If wanted, the web-interface could also be ignored and the GCODE-file could be put directly on the 3D-Printers SD card
     manually.
     Octoprint is still able to read those files and start the printing-job operation on them.
     From a handheld or wearable device the ability to start a print-job is expected, as this allows a printer operator
-    to use a computer from a distance, and repeatedly start the same or a new job without having to slice again.
+    to use a computer away from the printer, and repeatedly start the same or a new job without having to slice again.
 
     \newpage
 
