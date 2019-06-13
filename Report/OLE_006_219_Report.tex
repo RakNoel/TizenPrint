@@ -16,6 +16,7 @@
 \usetikzlibrary{arrows}
 \usepackage{amssymb}
 \usepackage{url}
+\usepackage{epigraph}
 
 %Images%
 \usepackage{graphicx}
@@ -114,7 +115,10 @@
         \centerline{\includegraphics[scale=0.5]{figures/MK3s-home-new}}
         \caption{Image of the Prusa MK3s FDM 3D-Printer}
         \begin{quote}
-            "Any sufficiently advanced technology is indistinguishable from magic." \mycitation{wikiquote:ArthurCClarke}
+            "Any sufficiently advanced technology is indistinguishable from magic."
+            \begin{flushright}
+                \tiny{--- Arthur C. Clarke}
+            \end{flushright}
         \end{quote}
     \end{figure}
 
@@ -223,16 +227,40 @@
 
     \mysubsection{Rest-API}
     \mysubsubsection{The technology}
-    The idea of having stateless APIs available to allow different applications is not a new idea.
-    However due to newer web technologies like React and typescript it has slowly been creeping up the line as a market
-    standard.
+    An application programming interface, is a gateway within an application designed for computer interactions.
+    This allows any application to query the API and handle the answer as standardized formats.
     \\\\
     The REST or Restful only states that the host/server does not hold your state.
     The client therefore has to actively send all relevant information, but is in turn allowed to disseminate the entire
-    application, and only query required information.
+    application, and query only required information.
+    \\\\
+    Due to the stateless design there is no graph in which the application must be traversed, and even the api can call
+    itself to make higher order functions.
+    By design this can become an entirely new kind of application spaghetti, with too many endpoints and circular
+    references.
 
-    \mysubsubsection{Interview part}
+    \begin{quote}
+        "It is no silver bullet, but a powerful tool."
+        \begin{flushright}
+            \tiny{--- Christoffer O. Hern\ae s, CDO. Sbanken}
+        \end{flushright}
+    \end{quote}
 
+    \mysubsubsection{Exposing APIs}
+    APIs can divide an application to smaller \textit{Single responsibility} endpoints, or separate
+    backend from frontend.
+    The most used parts of a service can often be made into APIs in order to remove code-replication within a business,
+    and sometimes those APIs can be opened directly to the customers.
+    This allows the users to develop any automated solution themselves, which we can see some larger businesses doing.
+    \\\\
+    In the fintech market we have seen several uses of APIs, especially since the PSD2 directive was added by the EU .
+    A popular example is how many norwegian banks are allowing the importing of external accounts, and the import of the
+    norwegian state student loan service \textit{L\aa nekassen} into Sbanken
+    \mycitation{laanekassen:psd2:sbanken}
+    \\\\
+    Other (especially open-source) applications can expose the entire application as an API allowing users to contribute
+    with new solutions, like Octoprint allowing users to develop applications even for other devices.
+    This is crucial to develop the TizenPrint application.
 
     \newpage
 
@@ -368,7 +396,6 @@
     \end{figure}
 
     \mysubsection{Security}
-    \textbf{NOTE:} This section is to be expanded
     \begin{itemize}
         \item Architecture / Endpoints
         \item Worst case misuse
