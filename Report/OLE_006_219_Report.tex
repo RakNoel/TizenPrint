@@ -50,6 +50,17 @@
     %Tving ny side
     \newpage
 
+    \mysection{Acknowledgements}
+    I would like to express my very great appreciation to \textit{Christoffer O. Hern\ae s} for the invaluable insight given about the
+    real-world applications of APIs .
+    \\
+    I also wish to asseverate the importance of clarity which \textit{Snorre Kim} brought me, while assisting in the
+    design and layout process.
+    \\
+    Lastly I want to acknowledge my mentor \textit{Jaakko J\"{a}rvi} for the freedom and professionalism he has provided
+    together with his constructive suggestions.
+
+    \newpage
 
     % % % % % % % % % % % % % % % % %
     %
@@ -82,7 +93,7 @@
     device-limitations and design.
     Using online resources for a private project would also not require to much licensing issues, simplifying even the
     design process.
-    Unfortunately due to the vast difference in both functionality and behaviour between different 3D-Printer 
+    Unfortunately due to the vast difference in both functionality and behaviour between different 3D-Printer
     technologies, this project will only cover the most common home/hobby technology.
     \\\\
     This application is to be named TizenPrint, and shall become a valuable security mechanism for my personal use
@@ -92,16 +103,6 @@
     Both aforementioned applications are totally independent, but does share some code and ideas.
     Therefore it is feasible to mention also MyPay in this report.
 
-    \mysection{Acknowledgements}
-    I would like to express my very great appreciation to \textit{***} for the invaluable insight given about the
-    real-world applications of APIs .
-    \\
-    I also wish to asseverate the importance of clarity which \textit{Snorre Kim} brought me, while assisting in the
-    design and layout process.
-    \\
-    Lastly I want to acknowledge my mentor \textit{Jaakko Järvi} for the freedom and professionalism he has provided
-    together with his constructive suggestions.
-
     \newpage
 
     % % % % % % % % % % % % % % % % %
@@ -109,15 +110,18 @@
     %	What is 3D-Printing
     %
     \mysection{What is 3D-Printing}
-    \centerline{\includegraphics[scale=0.5]{figures/MK3s-home-new}}
-    \begin{quote}
-        "Any sufficiently advanced technology is indistinguishable from magic." \mycitation{wikiquote:ArthurCClarke}
-    \end{quote}
+    \begin{figure}
+        \centerline{\includegraphics[scale=0.5]{figures/MK3s-home-new}}
+        \caption{Image of the Prusa MK3s FDM 3D-Printer}
+        \begin{quote}
+            "Any sufficiently advanced technology is indistinguishable from magic." \mycitation{wikiquote:ArthurCClarke}
+        \end{quote}
+    \end{figure}
 
     \mysubsection{The technology}
     3D-Printing is a relative new technology which allows production of computer-designed three-dimensional models
     in certain materials.
-    There are many different methods of 3D-Printing, but the far most common for home use is \textit{Fused filament 
+    There are many different methods of 3D-Printing, but the far most common for home use is \textit{Fused filament
     fabrication} (FFF), or more commonly known as the trademarked term \textit{Fused deposition modeling} (FDM),
     which is the type used in this project.
     \\\\
@@ -125,7 +129,7 @@
     a method which extrudes thin strings of thermoplastic filament
     in layers as thin as 0.05mm and up to 1mm, controlled by computer numeric control (CNC) code.
     This allows the creation of models with great detail at a low cost, with the accuracy of stepper-motors.
-    It also allows to re-use the commands and produce almost exact replicas of the same digital objects with 
+    It also allows to re-use the commands and produce almost exact replicas of the same digital objects with
     little to no extra work.
     \\\\
     Unfortunately this 3D-Printing process is tedious, and can take several hours or even days.
@@ -192,7 +196,7 @@
         Usually holds default settings for your printer, and some are proprietary.
     \end{itemize}
     \mycitation{reprap:gcode}
-    
+
     \newpage
 
     \mysection{Technologies}
@@ -200,7 +204,7 @@
     As of now, many 3D-Printers are open-source, which allows users to create their own tools and better the control they have.
     One such tool is \textit{Octoprint}, which runs on a raspberry-Pi, hosting a web interface for your 3D-Printer.
     \\\\
-    The Octoprint server allows the user to read live sensor data from a web-interface, connect a camera, and even add plugins 
+    The Octoprint server allows the user to read live sensor data from a web-interface, connect a camera, and even add plugins
     for more advanced control.
     Allowing such an expansion can ease large manufacturing by, e.
     g.
@@ -252,20 +256,22 @@
     Ideally it should also act as a small safety feature to keep an eye on a running printer from a distance, even though
     leaving any running CNC machine is discouraged.
     \\\\
-    It is therefore essential to the minimum viable product (MVP), that the application is able to show a live 
+    It is therefore essential to the minimum viable product (MVP), that the application is able to show a live
     video-stream of the printer, and read the different temperatures in real time with minimal delay.
     Control of axis is also a priority, as this is an essential tool while operating the machine before and after
     print-jobs.
     Lastly the application should hold an option to start prints, although neither upload nor perform a slicing
     operation as that would be illogical to do on such a small device.
 
+    \newpage
+
     \mysubsection{Planned architecture}
-    \centerline{
+    \begin{figure}[h!]
         \includegraphics[scale=0.5]{figures/TizenPrint-architecture.png}
-    \captionof{figure}{Planned Architecture;
-    With this setup the physical printer and webcam is isolated by physical
+        \caption{Planned Architecture;
+        With this setup the physical printer and webcam is isolated by physical
         connections from the rest of the world.}
-    }
+    \end{figure}
 
     Octoprint is running as a service on a Raspberry Pi 3B+ (marked red), with access to its filesystem for storage and other
     external applications like an alternative slicer.
@@ -280,7 +286,7 @@
     It is therefore not feasible to support all of Octoprints features on such devices.
     This is usually not a problem because such devices would typically be used mainly for monitoring and setting up printing,
     for which the full feature set is not needed.
-    Meanwhile more complicated features like the setup of models can be done by a computer, where one normally would design 
+    Meanwhile more complicated features like the setup of models can be done by a computer, where one normally would design
     the model anyways.
     Here we can slice the model to our preferred settings, and upload the gcode to octoprint where it will be stored on
     the raspberry pi filesystem.
@@ -355,11 +361,11 @@
     To expand the design, the background was set to a contrast color, and got a circular box over it to illustrate where
     the physical frame would be.
 
-    \centerline{
+    \begin{figure}[h!]
         \includegraphics[scale=0.5]{figures/application-xyz-image.png}
-    \captionof{figure}{Screenshots of the application displayed in the \textit{Google Chrome} web browser.
-    The black parts of the square will be placed outside the physical screen on the device. }
-    }
+        \caption{Screenshots of the application displayed in the \textit{Google Chrome} web browser.
+        The black parts of the square will be placed outside the physical screen on the device.}
+    \end{figure}
 
     \mysubsection{Security}
     \textbf{NOTE:} This section is to be expanded
@@ -396,14 +402,14 @@
     Working with a circular display is a rather interesting concept.
     Due to the bevels not following a straight line, while the screen effectively is outside the frame, it does mess with
     the design and layout languages CSS and HTML .
-    Tizen-studio does provide a small package called the Circular-helper.js which is meant to support developers by 
+    Tizen-studio does provide a small package called the Circular-helper.js which is meant to support developers by
     keeping elements inside the frame on the device.
     Still it is often easier to just use strict design and pixel measures.
     Such design is usually not viable in normal web-design due to all the different devices that can access a site, but
     due to the application only supporting one device that is not an issue.
     \\\\
     Another aspect of the circular design is that it allows for some innovative figures and designs.
-    Even though such a circular construction limits an already small screen, it allows the design to break certain standards, 
+    Even though such a circular construction limits an already small screen, it allows the design to break certain standards,
     and move objects closer to the center of the screen.
     This forces the look to become less structured, and applies a more natural feel to almost any design,
     while only displaying the most relevant information.
