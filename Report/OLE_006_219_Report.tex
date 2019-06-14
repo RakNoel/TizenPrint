@@ -68,27 +68,43 @@
     %	Abstract
     %
     \mysection{Abstract}
-    This report summarizes everything I have learned or experienced during the development process of implementing
-    an application for the \textit{"Samsung Galaxy Watch"} using the proprietary IDE
-    \textit{Tizen studio} to allow control and monitoring of the most common open source 3D printers.
+    This report summarizes the findings during the development process of implementing a proof of concept for a smart
+    watch application to allow the control and monitoring of the most common open source 3D printers.
+    Using a proprietary IDE called Tizen studio, an application was built for the Samsung Galaxy Watch to allow simple
+    control of a Prusa MK3s 3D printer.
+    The goal was for the application to be able to show a live video stream of the printer,
+    provide information about ongoing prints such as temperature readings, and give the user the ability to start a
+    print and control the axes outside of printing operations.
+    Due to unforeseen issues during the implementation process, the application was ultimately not completed within the
+    project deadline, but all required features was tested and proved to be possible from the device.
     \\\\
-    Since the project does require design iterations and time beyond the timespan of this course, this will therefore
-    aim for a proof of concept rather than a finished product.
-    Still the project shall cover the integration of different solutions and technologies required for a functional
-    application.
+    Throughout this project, it became clear that Tizen studio was lacking the basic development tools needed to effectively work
+    with it, and was thus replaced in part by the Webstorm IDE.
+    Additionally, Tizen OS made it difficult to implement accessibility features.
+    Finally, it was challenging to create an application with such a small display screen while showing the relevant
+    information in a good way, thus many of the features present in for example the popular 3D printer monitor software OctoPrint
+    were not feasible to replicate on a smart watch.
 
     \mysection{Motivation}
-    The idea of using smart watches to control and monitor 3D printers is not new, but the Tizen web store does not
-    currently hold any viable solution.
-    3D printers are computer numeric control (CNC) machines, and usually requires human intervention during the
-    process.
-    Such an application can allow much greater control, and easy to access monitoring.
-    In turn boosting the safety and reliability of the product.
+    While operating a 3D printer there are many tasks requireing the operator to interact with the printer, but a computer is
+    still required to prepare the printing jobs.
+    Secondly 3D printers are computer numeric control (CNC) machines, and therefore highly unreliable to a point which 
+    human monitoring is recommended by most manufacturers and resellers.
+    Many different operation and monitoring services have been published, and one of the most known is Octoprint.
+    Octoprint provides any operator with almost any wanted features while also being open for installing plugins, allowing the user
+    to expand the usability of the appication.
     \\\\
-    Having no available application to control my 3D printer, the only option left was to develop a personal
-    solution.
-    Luckily since the printer was already set up with a control server hosting a web interface, development would only
-    include integration towards its application programming interface (API) service.
+    Unfortunately with remote accsess the printer may be placed in another location requireing any operator to travel back and forth
+    between the computer and the printer.
+    As a solution to this problem a mobile device can be used while at the printing site, and an even easier accessible device would 
+    be a wearable (like a watch, or glasses).
+    Being able to setup an monitor from a smart watch could greatly benefit an operator by the ease of access alone, and even more so
+    by using physical input devices with feedback.
+    \\\\
+    The idea of using smart watches to control and monitor 3D printers is not new, but the Tizen web store does not
+    currently hold any viable solution so the only option left was to develop a personal solution.
+    Luckily since the printer was already set up with an Octoprint control server hosting the web interface, development would only
+    include integration towards Octoprints application programming interface (API).
     \\\\
     Working with APIs at earlier occasions, much of the applications logic could be imported, leaving mainly the
     device limitations and design.
@@ -114,7 +130,7 @@
     \begin{figure}
         \centerline{\includegraphics[scale=0.5]{figures/MK3s-home-new}}
         \centering
-        \caption{Image of the Prusa MK3s FDM 3D printer}
+        \caption{Image of the Prusa MK3s FDM 3D printer, the same model used for development in this project}
         \begin{quote}
             "Any sufficiently advanced technology is indistinguishable from magic."
             \begin{flushright}
@@ -130,8 +146,7 @@
     fabrication} (FFF), or more commonly known as the trademarked term \textit{Fused deposition modeling} (FDM),
     which is the type used in this project.
     \\\\
-    FDM stands for Filament deposition modeling;
-    a method which extrudes thin strings of thermoplastic filament
+    FDM is a method which extrudes thin strings of thermoplastic filament
     in layers as thin as 0.05mm and up to 1mm, controlled by computer numeric control (CNC) code.
     This allows the creation of models with great detail at a low cost, with the accuracy of stepper motors.
     It also allows for the reuse of commands to produce almost exact replicas of the same digital objects with
@@ -232,7 +247,7 @@
     An application programming interface is a gateway within an application designed for computer interactions.
     This allows any application to query the API and handle the answer as standardized formats.
     \\\\
-    The REST or Restful only states that the host/server does not hold your state.
+    The REST or Restful definition only states that the host/server does not hold your state.
     The client therefore has to actively send all relevant information, but is in turn allowed to disseminate the entire
     application, and query only required information.
     \\\\
@@ -398,14 +413,6 @@
         \caption{Screenshots of the application displayed in the \textit{Google Chrome} web browser.
         The black parts of the square will be placed outside the physical screen on the device.}
     \end{figure}
-
-    \mysubsection{Security}
-    \begin{itemize}
-        \item Architecture / Endpoints
-        \item Worst case misuse
-        \item API key
-        \item TLS / HTTPS
-    \end{itemize}
 
     \mysubsection{Development tools}
     During this project several different tools have been used.
