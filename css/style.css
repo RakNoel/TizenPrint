@@ -107,3 +107,26 @@ td a {
 	float: left;
 	margin: 0px;
 }
+
+.icon {
+    width: 40px;
+}
+
+.gcodeTable {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    text-align: center;
+    font-size: large;
+}
+
+.gcodeTable tbody tr td {
+    padding: 15px;
+}
+
+#terminalLink {
+    width: 32px;
+    position: absolute;
+    top: -244px;
+    left: 160px;
+}

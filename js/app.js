@@ -1,7 +1,7 @@
 //Global variables
 let activeWindow = "mainMenu";
 let printerStatus = "";
-const possibleAxisSpeeds = [5, 10, 50];
+const possibleAxisSpeeds = [5, 10, 15];
 const possibleAxisName = ["x", "y", "z"];
 let axisControl = {
     currentAxis: 0,
@@ -185,4 +185,50 @@ async function loadStream() {
 
 async function unloadStream() {
     $("#streamImage").attr("src", "");
+}
+
+function terminalCommand(gcode) {
+    let printerAction = {
+        "command": gcode
+    };
+    console.log(printerAction);
+    postPrinter("api/printer/command", printerAction);
+}
+
+function preHeat(filament) {
+    let temp = {
+        hotEnd: 0,
+        heatbed: 0
+    };
+    switch (filament) {
+        case "PA12":
+            temp.hotEnd = 250;
+            temp.heatbed = 100;
+            break;
+        case "PETG":
+            temp.hotEnd = 230;
+            temp.heatbed = 85;
+            break;
+        case "PLA":
+            temp.hotEnd = 215;
+            temp.heatbed = 60;
+            break;
+        default:
+            break;
+    }
+
+    let printerToolAction = {
+        "command": "target",
+        "targets": {
+            "tool0": temp.hotEnd
+        }
+    };
+    postPrinter("api/printer/tool", printerToolAction);
+
+    let printerBedAction = {
+        "command": "target",
+        "target": temp.heatbed
+    };
+    postPrinter("api/printer/bed", printerBedAction);
+
 }

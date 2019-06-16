@@ -31,15 +31,49 @@
         <div class="footer" id="mainMenuFooter">
             <ul class="footer--menu">
                 <li class="bubble">
-                    <a id="printLink" href="#print"><img style="width:32px;" src="icons/print-solid.svg"
+                    <a id="printLink" href="#print"><img class="icon" src="icons/print-solid.svg"
                                                          alt="Print icon"></a>
                 </li>
                 <li class="bubble" id="axisLink">
-                    <a href="#axis"><img style="width:32px;" src="icons/ruler-combined-solid.svg" alt="Axis icon"></a>
+                    <a href="#axis"><img class="icon" src="icons/ruler-combined-solid.svg" alt="Axis icon"></a>
                 </li>
                 <li class="bubble">
-                    <a href="#stream" onclick='loadStream()'><img style="width:32px;" src="icons/video-solid.svg"
+                    <a href="#stream" onclick='loadStream()'><img class="icon" src="icons/video-solid.svg"
                                                                   alt="Stream icon"></a>
+                </li>
+            </ul>
+            <div class="bubble" id="terminalLink"><a href="#terminal"><img class="icon" src="icons/terminal-solid.svg"
+                                                                           alt="terminal icon"></a></div>
+        </div>
+    </div>
+</div>
+
+<div class="ui-page" id="terminal">
+    <div class="contents">
+        <div style=' width:75%; margin:auto;'>
+            <h1 class="header">G-CODE</h1>
+            <table class="gcodeTable">
+                <tbody>
+                <tr>
+                    <td onclick="terminalCommand('G28 W')">Home-XY</td>
+                    <td onclick="terminalCommand('G28')">Calib.</td>
+                </tr>
+                <tr>
+                    <td onclick="preHeat('cooldown')">Cooldown</td>
+                    <td onclick="preHeat('PA12')">Heat-PA12</td>
+                </tr>
+                <tr>
+                    <td onclick="preHeat('PLA')">Heat-PLA</td>
+                    <td onclick="preHeat('PETG')">Heat-PETG</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer" id="footer">
+            <ul id=menu class="footer--menu">
+                <li class="bubble">
+                    <a href="#mainMenu"><img class="icon" src="icons/undo-solid.svg"
+                                             alt="return to menu"></a>
                 </li>
             </ul>
         </div>
@@ -49,7 +83,6 @@
 <div class="ui-page" id="axis">
     <div class="contents">
         <div style='margin:auto;'>
-            <!--<img style="margin:auto; height:200px; width:200px;" id="imgXYZ" src="icons/XYZ.svg" alt="xyz image">-->
             <div id="imgXYZContainer" style="margin:auto; height:200px; width:200px;">
                 <svg id="imgXYZ" style="width:100%; height:100%;" xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 35.41 42.58">
@@ -95,14 +128,14 @@
             </div>
         </div>
         <div id="axisSpeed">
-            <span><img style="width:32px;" src="icons/step-forward-solid.svg"
+            <span><img class="icon" src="icons/step-forward-solid.svg"
                        alt="change speed"></span>
             <span id="axisSpeedText"></span>
         </div>
         <div class="footer" id="axisFooter">
             <ul id=menu class="footer--menu">
                 <li class="bubble">
-                    <a href="#mainMenu"><img style="width:32px;" src="icons/undo-solid.svg"
+                    <a href="#mainMenu"><img class="icon" src="icons/undo-solid.svg"
                                              alt="return to menu"></a>
                 </li>
             </ul>
@@ -118,7 +151,7 @@
         <div class="footer" id="footer">
             <ul id=menu class="footer--menu">
                 <li class="bubble">
-                    <a href="#mainMenu" onclick='unloadStream()'><img style="width:32px;" src="icons/undo-solid.svg"
+                    <a href="#mainMenu" onclick='unloadStream()'><img class="icon" src="icons/undo-solid.svg"
                                                                       alt="return to menu"></a>
                 </li>
             </ul>
