@@ -37,5 +37,5 @@ function fakeRotate(dir) {
         }
     };
     document.dispatchEvent(new CustomEvent("hardwareRotate", event));
-    console.log("event sent with dir: " + dir);
+    console.log("event sent with dir: " + event.detail.direction);
 }

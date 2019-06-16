@@ -51,7 +51,7 @@ function controlAxis(event) {
     }
 
     console.log(event);
-    let rotaryDirection = (event.detail.direction === undefined) ? event.detail.direction : "CW";
+    let rotaryDirection = (event.detail.direction === undefined) ? "CW" : event.detail.direction;
 
     let moves = [0, 0, 0];
     let dirMod = (rotaryDirection === "CW") ? 1 : -1;
