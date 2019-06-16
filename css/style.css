@@ -124,9 +124,46 @@ td a {
     padding: 15px;
 }
 
+.over {
+    position: relative;
+    z-index: 100;
+    background-color: #262342;
+    padding-left:100px;
+    left: -100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.compensate {
+    position: absolute;
+    z-index: 99;
+    left: 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 #terminalLink {
     width: 32px;
     position: absolute;
     top: -244px;
     left: 160px;
+}
+
+#printFileName {
+    transform:translateX(100%);
+    animation: example1 10s linear infinite;
+    top: -20px;
+    position: relative;
+    z-index: 99;
+}
+
+@keyframes example1 {
+    0%   {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }

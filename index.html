@@ -159,6 +159,48 @@
     </div>
 </div>
 
+<div class="ui-page" id="print">
+    <div class="contents">
+        <div style='margin:auto; width:75%;' id="mainMenuContent">
+            <h1 class="header">Start new print</h1>
+            <table>
+                <tbody>
+                <tr>
+                    <td class="attrib over">File:</td>
+                    <td class="value compensate"><p id="printFileName"></p></td>
+                </tr>
+                <tr>
+                    <td class="attrib over">Time:</td>
+                    <td class="value compensate" id="printFileTime"></td>
+                </tr>
+                <tr>
+                    <td class="attrib over">Origin:</td>
+                    <td class="value compensate" id="printFileOrigin"></td>
+                </tr>
+                <tr>
+                    <td class="attrib over">Type:</td>
+                    <td class="value compensate" id="printFileType"></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="footer" id="mainMenuFooter">
+            <ul class="footer--menu">
+                <li class="bubble">
+                    <a href="#mainMenu"><img class="icon" src="icons/undo-solid.svg"
+                                             alt="return to menu"></a>
+                </li>
+
+                <li class="bubble">
+                    <a href="#mainMenu" onclick="startPrint()"><img class="icon" src="icons/play-solid.svg"
+                                                                  alt="Start print icon"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <div class="footer ui-footer" id="rotationContainer">
     <div style="float: left; position: absolute; top: 10px; left: -60px;"><a id="fakeRotateLeft"
                                                                              onclick="fakeRotate('CCW')">RL</a></div>

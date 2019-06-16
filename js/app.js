@@ -7,11 +7,14 @@ let axisControl = {
     currentAxis: 0,
     currentSpeed: 0,
 };
+let printerFiles = [];
+let selectedPrinterFile = 0;
 
 //Document load
 $(function () {
     //Events
     document.addEventListener("hardwareRotate", controlAxis);
+    document.addEventListener("hardwareRotate", changePrintFile);
     document.addEventListener("pagechange", updateActiveWindow);
     document.addEventListener("printerStatusChange", setPrintingMode);
 
@@ -26,6 +29,7 @@ $(function () {
     automaticConnection().then(() => {
         console.log("Connected");
         fillMenu();
+        loadAllPrinterFiles();
         window.setInterval(() => {
             fillMenu();
         }, 1000);
@@ -33,6 +37,7 @@ $(function () {
 });
 
 function setPrintingMode() {
+    //TODO: This is the bug, fix it
     let visible = (printerStatus !== "Operational") ? "hidden" : "";
     try {
         $("#axisLink").css("visibility", visible);
@@ -231,4 +236,77 @@ function preHeat(filament) {
     };
     postPrinter("api/printer/bed", printerBedAction);
 
+}
+
+function loadAllPrinterFiles() {
+    getStatus("/api/files").then(result => {
+        printerFiles = fileObjectToList(result.files).sort(function (a, b) {
+            return b.date - a.date;
+        });
+        console.log(printerFiles);
+        if (printerFiles.length > 0) {
+            displayPrinterFile();
+        }
+    });
+}
+
+function secondsToHms(d) {
+    d = Number(d);
+    var h = Math.floor(d / 3600);
+    var m = Math.floor(d % 3600 / 60);
+    var s = Math.floor(d % 3600 % 60);
+
+    return h + ":" + m + ":" + s;
+}
+
+function fileObjectToList(object) {
+    let list = [];
+    for (let item in object) {
+        if (object[item].type === "folder") {
+            list = list.concat(fileObjectToList(object[item].children));
+        } else {
+            list.push(object[item]);
+        }
+    }
+    return list;
+}
+
+function displayPrinterFile(){
+    $("#printFileName").text(printerFiles[selectedPrinterFile].path);
+    $("#printFileType").text(printerFiles[selectedPrinterFile].type);
+    $("#printFileOrigin").text(printerFiles[selectedPrinterFile].origin);
+    if (printerFiles[selectedPrinterFile].origin === "local"){
+        $("#printFileTime").text(secondsToHms(printerFiles[selectedPrinterFile].gcodeAnalysis.estimatedPrintTime));
+    } else {
+        $("#printFileTime").text("unavalible");
+    }
+}
+
+function changePrintFile(rotaryEvent) {
+    if (activeWindow !== "print") {
+        return true;
+    }
+    if (printerStatus !== "Operational") {
+        return true;
+    }
+
+    let rotaryDirection = (rotaryEvent.detail.direction === undefined) ? "CW" : rotaryEvent.detail.direction;
+
+    selectedPrinterFile += (rotaryDirection === "CW") ? 1 : -1;
+    selectedPrinterFile = mod(selectedPrinterFile, printerFiles.length);
+    displayPrinterFile();
+}
+
+function startPrint() {
+    let postUri = "api/files/" + printerFiles[selectedPrinterFile].origin + "/" + printerFiles[selectedPrinterFile].path;
+    let printerCommand = {
+        "command": "select",
+        "print": true
+    };
+    postPrinter(postUri,printerCommand);
+}
+
+//Fixes negative number modulo
+function mod(n, m) {
+    return ((n % m) + m) % m;
 }
