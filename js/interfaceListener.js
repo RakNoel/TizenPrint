@@ -20,7 +20,7 @@
         }
     });
 
-    (function(tau) {
+    (function (tau) {
         if (tau.support.shape.circle) {
             document.addEventListener("pagebeforeshow", () => {
                 window.addEventListener("rotarydetent", rotaryHandler);
@@ -28,3 +28,14 @@
         }
     }(tau));
 }());
+
+function fakeRotate(dir) {
+    let event = {
+        detail: {
+            direction: dir,
+            fake: "true"
+        }
+    };
+    document.dispatchEvent(new CustomEvent("hardwareRotate", event));
+    console.log("event sent with dir: " + dir);
+}

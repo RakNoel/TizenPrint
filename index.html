@@ -31,7 +31,8 @@
         <div class="footer" id="mainMenuFooter">
             <ul class="footer--menu">
                 <li class="bubble">
-                    <a id="printLink" href="#print"><img style="width:32px;" src="icons/print-solid.svg" alt="Print icon"></a>
+                    <a id="printLink" href="#print"><img style="width:32px;" src="icons/print-solid.svg"
+                                                         alt="Print icon"></a>
                 </li>
                 <li class="bubble" id="axisLink">
                     <a href="#axis"><img style="width:32px;" src="icons/ruler-combined-solid.svg" alt="Axis icon"></a>
@@ -50,10 +51,26 @@
         <div style='margin:auto;'>
             <!--<img style="margin:auto; height:200px; width:200px;" id="imgXYZ" src="icons/XYZ.svg" alt="xyz image">-->
             <div id="imgXYZContainer" style="margin:auto; height:200px; width:200px;">
-                <svg id="imgXYZ" style="width:100%; height:100%;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.41 42.58">
+                <svg id="imgXYZ" style="width:100%; height:100%;" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 35.41 42.58">
                     <defs>
                         <style>
-                            .cls-1{fill:#32fcb3;stroke:#32fcb3;stroke-miterlimit:10;}.cls-2{fill:#32fcb3;font-size:5.97px;}.cls-3{fill:#f72d2d !important;stroke:#f72d2d !important;stroke-miterlimit:10;}
+                            .cls-1 {
+                                fill: #32fcb3;
+                                stroke: #32fcb3;
+                                stroke-miterlimit: 10;
+                            }
+
+                            .cls-2 {
+                                fill: #32fcb3;
+                                font-size: 5.97px;
+                            }
+
+                            .cls-3 {
+                                fill: #f72d2d !important;
+                                stroke: #f72d2d !important;
+                                stroke-miterlimit: 10;
+                            }
                         </style>
                     </defs>
                     <title>Asset 1</title>
@@ -63,9 +80,12 @@
                             <line id="yLine" class="cls-1" x1="5.46" y1="34.14" x2="18.33" y2="20.12"/>
                             <line id="xLine" class="cls-1" x1="5.33" y1="34.4" x2="32.33" y2="41.12"/>
                             <circle class="cls-1" cx="5.33" cy="34.12" r="1"/>
-                            <polygon id="zArrow" class="cls-1" points="4.33 3.12 6.33 3.12 5.33 1.12 4.33 3.12 4.33 3.12"/>
-                            <polygon id="yArrow" class="cls-1" points="16.92 20.22 18.44 21.53 18.99 19.36 16.92 20.22 16.92 20.22"/>
-                            <polygon id="xArrow" class="cls-1" points="32.56 39.94 32.15 41.89 34.31 41.32 32.56 39.94 32.56 39.94"/>
+                            <polygon id="zArrow" class="cls-1"
+                                     points="4.33 3.12 6.33 3.12 5.33 1.12 4.33 3.12 4.33 3.12"/>
+                            <polygon id="yArrow" class="cls-1"
+                                     points="16.92 20.22 18.44 21.53 18.99 19.36 16.92 20.22 16.92 20.22"/>
+                            <polygon id="xArrow" class="cls-1"
+                                     points="32.56 39.94 32.15 41.89 34.31 41.32 32.56 39.94 32.56 39.94"/>
                             <text id="zAxisImg" class="cls-2" transform="translate(0 19.13) scale(1.16 1)">Z</text>
                             <text id="yAxisImg" class="cls-2" transform="translate(17.83 27.1) scale(1.22 1)">Y</text>
                             <text id="xAxisImg" class="cls-2" transform="translate(27.72 39.06) scale(1.16 1)">X</text>
@@ -106,6 +126,12 @@
     </div>
 </div>
 
+<div class="footer ui-footer" id="rotationContainer">
+    <div style="float: left; position: absolute; top: 10px; left: -60px;"><a id="fakeRotateLeft"
+                                                                             onclick="fakeRotate('CCW')">RL</a></div>
+    <div style="float: right; position: absolute; top: 10px; left: 233px;"><a id="fakeRotateRight"
+                                                                              onclick="fakeRotate('CW')">RR</a></div>
+</div>
 
 <script src="lib/tau/wearable/js/tau.min.js"></script>
 <script type="text/javascript" src="js/interfaceListener.js"></script>
