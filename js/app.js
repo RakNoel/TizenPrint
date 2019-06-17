@@ -37,7 +37,6 @@ $(function () {
 });
 
 function setPrintingMode() {
-    //TODO: This is the bug, fix it
     let visible = (printerStatus !== "Operational") ? "hidden" : "";
     try {
         $("#axisLink").css("visibility", visible);
@@ -136,6 +135,21 @@ function fillMenu() {
         }
         if (typeof result.temperature.bed !== undefined) {
             $("#heatbed").text(result.temperature.bed.actual + " / " + result.temperature.bed.target);
+        }
+        if (printerStatus === "Printing") {
+            getStatus("api/job").then(result => {
+                if (typeof result.job.file.display !== undefined) {
+                    $("#menuSelectedFile").text(result.job.file.display);
+                }
+                if (typeof result.progress.completion !== undefined) {
+                    $("#menuProgress").text(parseInt(result.progress.completion, 10) + "%");
+                }
+                if (typeof result.progress.printTimeLeft !== undefined) {
+                    $("#menuTimeLeft").text(secondsToHms(result.progress.printTimeLeft));
+                }
+            }, () => {
+                console.error("Unable to read job");
+            });
         }
     }, () => {
         $("#printerStatus").text("State: Not operational");
