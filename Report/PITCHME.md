@@ -1,9 +1,9 @@
----
-
 ### 3D Printer Tizen-wearable application
 
 Note:
 - https://gitpitch.com/raknoel/tizenprint/master?p=Report/#/
+
+---
 
 ### What is 3D printing
 
